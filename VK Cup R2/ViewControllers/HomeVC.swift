@@ -37,9 +37,9 @@ class HomeViewController: UIViewController {
         elementsTableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            elementsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            elementsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            elementsTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            elementsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            elementsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            elementsTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
             elementsTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }

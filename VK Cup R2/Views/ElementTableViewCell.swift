@@ -26,6 +26,8 @@ class ElementTableViewCell: UITableViewCell {
         clearBgView.addSubview(titleLabel)
         
         bgView.backgroundColor = .systemBlue
+        bgView.layer.cornerRadius = 10
+        bgView.clipsToBounds = true
         
         titleLabel.text = text
         
@@ -36,7 +38,7 @@ class ElementTableViewCell: UITableViewCell {
             bgView.leadingAnchor.constraint(equalTo: leadingAnchor),
             bgView.trailingAnchor.constraint(equalTo: trailingAnchor),
             bgView.topAnchor.constraint(equalTo: topAnchor),
-            bgView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
+            bgView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15),
             
             titleLabel.centerXAnchor.constraint(equalTo: bgView.centerXAnchor),
             titleLabel.centerYAnchor.constraint(equalTo: bgView.centerYAnchor)
