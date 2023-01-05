@@ -30,8 +30,10 @@ class HomeViewController: UIViewController {
         
         view.addSubview(elementsTableView)
         
-        elementsTableView.register(UITableViewCell.self, forCellReuseIdentifier: Helpers.homeVCIdentifier)
-    
+        elementsTableView.register(ElementTableViewCell.self, forCellReuseIdentifier: Helpers.homeVCIdentifier)
+        
+        elementsTableView.separatorStyle = .none
+        
         elementsTableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -50,8 +52,18 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = elementsTableView.dequeueReusableCell(withIdentifier: Helpers.homeVCIdentifier, for: indexPath)
+        let cell = elementsTableView.dequeueReusableCell(withIdentifier: Helpers.homeVCIdentifier, for: indexPath) as! ElementTableViewCell
+        cell.configureCell(text: "AAAA")
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return view.frame.height * 0.1
+    }
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//    }
+    
 }
 
