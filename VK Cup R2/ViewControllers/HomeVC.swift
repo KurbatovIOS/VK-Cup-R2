@@ -10,6 +10,7 @@ import UIKit
 class HomeViewController: UIViewController {
     
     private let elementsTableView = UITableView()
+    private let mainModel = MainModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,12 +49,12 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return mainModel.elements.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = elementsTableView.dequeueReusableCell(withIdentifier: Identifiers.homeVCIdentifier, for: indexPath) as! ElementTableViewCell
-        cell.configureCell(text: "AAAA")
+        cell.configureCell(text: mainModel.elements[indexPath.row])
         return cell
     }
     
