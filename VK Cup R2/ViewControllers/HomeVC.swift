@@ -30,7 +30,7 @@ class HomeViewController: UIViewController {
         
         view.addSubview(elementsTableView)
         
-        elementsTableView.register(ElementTableViewCell.self, forCellReuseIdentifier: Helpers.homeVCIdentifier)
+        elementsTableView.register(ElementTableViewCell.self, forCellReuseIdentifier: Identifiers.homeVCIdentifier)
         
         elementsTableView.separatorStyle = .none
         
@@ -52,7 +52,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = elementsTableView.dequeueReusableCell(withIdentifier: Helpers.homeVCIdentifier, for: indexPath) as! ElementTableViewCell
+        let cell = elementsTableView.dequeueReusableCell(withIdentifier: Identifiers.homeVCIdentifier, for: indexPath) as! ElementTableViewCell
         cell.configureCell(text: "AAAA")
         return cell
     }

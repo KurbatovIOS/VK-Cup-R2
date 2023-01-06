@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Helpers {
+class Identifiers {
     
     static let homeVCIdentifier = "homeCell"
     
