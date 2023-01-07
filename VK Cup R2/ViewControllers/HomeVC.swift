@@ -62,9 +62,21 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return view.frame.height * 0.1
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//    }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let destinationVC: Any?
+        
+        switch indexPath.row {
+        case 0:
+            destinationVC = SurveyVC()
+//        case 1:
+//        case 2:
+//        case 3:
+        default:
+            destinationVC = SurveyVC()
+        }
+        
+        navigationController?.pushViewController(destinationVC as! UIViewController, animated: true)
+    }
 }
 

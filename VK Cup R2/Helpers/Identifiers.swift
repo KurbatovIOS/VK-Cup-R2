@@ -10,6 +10,6 @@ import Foundation
 class Identifiers {
     
     static let homeVCIdentifier = "homeCell"
-    
+    static let surveyVCIdentifier = "surveyCell"
     
 }
