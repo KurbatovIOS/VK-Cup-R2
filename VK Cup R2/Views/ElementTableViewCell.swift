@@ -30,6 +30,7 @@ class ElementTableViewCell: UITableViewCell {
         bgView.clipsToBounds = true
         
         titleLabel.text = text
+        titleLabel.textColor = .white
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         bgView.translatesAutoresizingMaskIntoConstraints = false
