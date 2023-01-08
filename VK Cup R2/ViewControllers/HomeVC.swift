@@ -21,6 +21,7 @@ class HomeViewController: UIViewController {
         view.backgroundColor = .systemBackground
         
         title = "Выбор"
+        navigationItem.backButtonTitle = "Назад"
         
         self.navigationController?.navigationBar.prefersLargeTitles = true
         
