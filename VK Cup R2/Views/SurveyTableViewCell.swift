@@ -1,13 +1,13 @@
 //
-//  ElementTableViewCell.swift
+//  SurveyTableViewCell.swift
 //  VK Cup R2
 //
-//  Created by Kurbatov Artem on 05.01.2023.
+//  Created by Kurbatov Artem on 09.01.2023.
 //
 
 import UIKit
 
-class ElementTableViewCell: UITableViewCell {
+class SurveyTableViewCell: UITableViewCell {
     
     private let bgView = UIView()
     private let clearBgView = UIView()
@@ -21,17 +21,15 @@ class ElementTableViewCell: UITableViewCell {
         backgroundView = clearBgView
         
         clearBgView.backgroundColor = .clear
-                
+        
         clearBgView.addSubview(bgView)
         clearBgView.addSubview(titleLabel)
         
-        bgView.backgroundColor = .systemBlue
-        bgView.layer.cornerRadius = 10
+        bgView.backgroundColor = .systemGray4
+        bgView.layer.cornerRadius = 5
         bgView.clipsToBounds = true
         
         titleLabel.text = text
-        titleLabel.textColor = .white
-        titleLabel.font = UIFont.preferredFont(forTextStyle: .title3)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         bgView.translatesAutoresizingMaskIntoConstraints = false
@@ -42,10 +40,9 @@ class ElementTableViewCell: UITableViewCell {
             bgView.topAnchor.constraint(equalTo: topAnchor),
             bgView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15),
             
-//            titleLabel.leadingAnchor.constraint(equalTo: bgView.leadingAnchor, constant: 15),
-//            titleLabel.trailingAnchor.constraint(equalTo: bgView.trailingAnchor, constant: -15),
+            titleLabel.leadingAnchor.constraint(equalTo: bgView.leadingAnchor, constant: 15),
+            titleLabel.trailingAnchor.constraint(equalTo: bgView.trailingAnchor, constant: -15),
             
-            titleLabel.centerXAnchor.constraint(equalTo: bgView.centerXAnchor),
             titleLabel.centerYAnchor.constraint(equalTo: bgView.centerYAnchor)
         ])
     }

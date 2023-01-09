@@ -58,7 +58,6 @@ class SurveyVC: UIViewController {
         questionLabel.translatesAutoresizingMaskIntoConstraints = false
         
         questionLabel.font = UIFont.boldSystemFont(ofSize: 23)
-        //questionLabel.font = UIFont.preferredFont(forTextStyle: .title1)
         
         NSLayoutConstraint.activate([
             questionLabel.leadingAnchor.constraint(equalTo: questionCountLabel.leadingAnchor),
@@ -71,7 +70,7 @@ class SurveyVC: UIViewController {
         
         view.addSubview(anserTableView)
         
-        anserTableView.register(UITableViewCell.self, forCellReuseIdentifier: Identifiers.surveyVCIdentifier)
+        anserTableView.register(SurveyTableViewCell.self, forCellReuseIdentifier: Identifiers.surveyVCIdentifier)
         
         anserTableView.separatorStyle = .none
         
@@ -108,9 +107,12 @@ extension SurveyVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = anserTableView.dequeueReusableCell(withIdentifier: Identifiers.surveyVCIdentifier, for: indexPath)
-        cell.selectionStyle = .none
-        cell.textLabel?.text = "AAAA"
+        let cell = anserTableView.dequeueReusableCell(withIdentifier: Identifiers.surveyVCIdentifier, for: indexPath) as! SurveyTableViewCell
+        cell.configureCell(text: "AAAA \(indexPath.row)")
         return cell
-    }  
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return view.frame.height * 0.07
+    }
 }
