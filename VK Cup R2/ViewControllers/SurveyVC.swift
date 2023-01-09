@@ -26,8 +26,10 @@ class SurveyVC: UIViewController {
         view.backgroundColor = .white
         
         configuteQuestionCountLable()
+        configuteQuestionLable()
+        configureAnserTableView()
+        
         displayQuestion()
-        //configureAnserTableView()
     }
     
     // MARK: - views configuration
@@ -35,9 +37,7 @@ class SurveyVC: UIViewController {
     private func configuteQuestionCountLable() {
         
         view.addSubview(questionCountLabel)
-        
-        //questionCountLabel.text = "Вопрос \(count)"
-        
+                
         questionCountLabel.textColor = .systemGray2
         
         questionCountLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -53,6 +53,18 @@ class SurveyVC: UIViewController {
     
     private func configuteQuestionLable() {
         
+        view.addSubview(questionLabel)
+        
+        questionLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        questionLabel.font = UIFont.boldSystemFont(ofSize: 23)
+        //questionLabel.font = UIFont.preferredFont(forTextStyle: .title1)
+        
+        NSLayoutConstraint.activate([
+            questionLabel.leadingAnchor.constraint(equalTo: questionCountLabel.leadingAnchor),
+            questionLabel.trailingAnchor.constraint(equalTo: questionCountLabel.trailingAnchor),
+            questionLabel.topAnchor.constraint(equalTo: questionCountLabel.bottomAnchor, constant: 10),
+        ])
     }
     
     private func configureAnserTableView() {
@@ -61,12 +73,15 @@ class SurveyVC: UIViewController {
         
         anserTableView.register(UITableViewCell.self, forCellReuseIdentifier: Identifiers.surveyVCIdentifier)
         
+        anserTableView.separatorStyle = .none
+        
         anserTableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             anserTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             anserTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            anserTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
+            anserTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            anserTableView.topAnchor.constraint(equalTo: questionLabel.bottomAnchor, constant: 50)
         ])
     }
     
@@ -76,6 +91,12 @@ class SurveyVC: UIViewController {
         
         count += 1
         questionCountLabel.text = "Вопрос \(count)"
+        
+        questionLabel.text = "Вот он первый вопрос"
+        
+        // get question label
+        // set answer cells
+        // reload teble view
         
     }
 }
@@ -88,6 +109,8 @@ extension SurveyVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = anserTableView.dequeueReusableCell(withIdentifier: Identifiers.surveyVCIdentifier, for: indexPath)
+        cell.selectionStyle = .none
+        cell.textLabel?.text = "AAAA"
         return cell
     }  
 }
