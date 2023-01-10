@@ -91,6 +91,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 //        case 1:
 //        case 2:
 //        case 3:
+        case 4:
+            destinationVC = RatingVC()
         default:
             destinationVC = SurveyVC()
         }
