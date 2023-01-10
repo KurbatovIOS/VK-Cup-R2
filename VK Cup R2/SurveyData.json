@@ -2,36 +2,43 @@
     {
         "question": "Ключевое слово для объявления переменной",
         "answers": ["let", "var", "self"],
-        "correctIndex": 0
+        "correctIndex": 0,
+        "answerPercents": [89, 11, 0]
     },
     {
         "question": "Неупорядоченная коллекция, хранящая в себе значения с уникальным ключом – это…",
         "answers": [ "Массив", "Словарь", "Множество"],
-        "correctIndex": 1
+        "correctIndex": 1,
+        "answerPercents": [10, 56, 34]
     },
     {
         "question": "Укажите строку, в которой записан оператор присваивания",
         "answers": ["a == b", "a = b", "a != b"],
-        "correctIndex": 0
+        "correctIndex": 0,
+        "answerPercents": [90, 9, 1]
     },
     {
         "question": "Отметьте строку программного кода, содержащую ошибку",
         "answers": ["let a: Int = 10", "let b: String = \"14\"", "let c: String = 2"],
-        "correctIndex": 2
+        "correctIndex": 2,
+        "answerPercents": [2, 25, 73]
     },
     {
         "question": "Что произойдёт при обращении к массиву из пяти элементов по индексу 5?",
         "answers": ["Будет возвращен nil", "Возникнет ошибка", "Будет возвращено значение пятого элемента"],
-        "correctIndex": 1
+        "correctIndex": 1,
+        "answerPercents": [35, 58, 7]
     },
     {
         "question": "В каком типе коллекции все хранимые элементы уникальны?",
         "answers": ["Массив", "Словарь", "Множество"],
-        "correctIndex": 2
+        "correctIndex": 2,
+        "answerPercents": [5, 40, 55]
     },
     {
         "question": "В каком типе коллекции все хранимые элементы упорядочены?",
         "answers": ["Массив", "Словарь", "Множество"],
-        "correctIndex": 0
+        "correctIndex": 0,
+        "answerPercents": [86, 7, 7]
     }
 ]

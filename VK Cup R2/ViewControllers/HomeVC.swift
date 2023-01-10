@@ -10,9 +10,9 @@ import UIKit
 class HomeViewController: UIViewController {
     
     private let elementsTableView = UITableView()
-    //private let titleLabel = UILabel()
+    private let elements = ["Опрос", "2", "3", "4", "Оценка"]
     
-    private let mainModel = MainModel()
+    //private let mainModel = MainModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,12 +68,12 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mainModel.elements.count
+        return elements.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = elementsTableView.dequeueReusableCell(withIdentifier: Helpers.homeVCIdentifier, for: indexPath) as! CustomTableViewCell
-        cell.configureCell(text: mainModel.elements[indexPath.row])
+        cell.configureCell(text: elements[indexPath.row])
         return cell
     }
     

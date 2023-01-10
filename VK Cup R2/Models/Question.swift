@@ -12,4 +12,5 @@ struct Question: Decodable {
     let question: String
     let answers: [String]
     let correctIndex: Int
+    let answerPercents: [Int]
 }

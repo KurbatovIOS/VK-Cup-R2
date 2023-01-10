@@ -17,7 +17,6 @@ class SurveyModel {
     var survey = [Question]()
     var delegate: SurveyModelDelegate?
     
-    
     func loadQuestions() {
         
         guard let path = Bundle.main.path(forResource: "SurveyData", ofType: "json") else { return }

@@ -36,7 +36,6 @@ class SurveyVC: UIViewController {
         
         configuteQuestionCountLable()
         configuteQuestionLable()
-        //configureAnserTableView()
         configureAnswerCollectionView()
         
         surveyModel.delegate = self
@@ -107,12 +106,6 @@ class SurveyVC: UIViewController {
         answerCollectionView.allowsSelection = true
         answerCollectionView.reloadData()
     }
-    
-    private func checkAnswer(indexPathForSelectedCell indexPath: IndexPath) {
-        
-        
-    }
-    
 }
 
 extension SurveyVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -123,7 +116,7 @@ extension SurveyVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = answerCollectionView.dequeueReusableCell(withReuseIdentifier: Helpers.surveyVCIdentifier, for: indexPath) as! SurveyCollectionViewCell
-        cell.configureCell(answer: survey[currentQuestionIndex].answers[indexPath.row])
+        cell.configureCell(answer: survey[currentQuestionIndex].answers[indexPath.row], percent: survey[currentQuestionIndex].answerPercents[indexPath.row])
         return cell
     }
     
@@ -143,7 +136,11 @@ extension SurveyVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
         
         answerCollectionView.allowsSelection = false
         
-        checkAnswer(indexPathForSelectedCell: indexPath)
+        let cells = answerCollectionView.visibleCells as! [SurveyCollectionViewCell]
+        
+        for cell in cells {
+            cell.answerPercent.alpha = 1
+        }
         
         let cell = answerCollectionView.cellForItem(at: indexPath)
         
@@ -166,38 +163,6 @@ extension SurveyVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
         }
     }
 }
-
-//extension SurveyVC: UITableViewDelegate, UITableViewDataSource {
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return survey[currentQuestionIndex].answers.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = anserTableView.dequeueReusableCell(withIdentifier: Helpers.surveyVCIdentifier, for: indexPath) as! CustomTableViewCell
-//        cell.configureCell(text: survey[currentQuestionIndex].answers[indexPath.row], bgColor: .systemGray3, cornerRadius: 5, alignment: .left)
-//        return cell
-//    }
-//
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return view.frame.height * 0.07
-//    }
-//
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//        checkAnswer(indexPathForSelectedCell: indexPath)
-//
-////        questionCount += 1
-////
-////        currentQuestionIndex += 1
-////
-////        if currentQuestionIndex == survey.count {
-////            currentQuestionIndex = 0
-////        }
-////        displayQuestion()
-//    }
-//
-//}
 
 extension SurveyVC: SurveyModelDelegate {
     
