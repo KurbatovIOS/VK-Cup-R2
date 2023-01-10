@@ -5,48 +5,33 @@
         "correctIndex": 0
     },
     {
-        "question": "1",
-        "answers": ["", "", ""],
+        "question": "Неупорядоченная коллекция, хранящая в себе значения с уникальным ключом – это…",
+        "answers": [ "Массив", "Словарь", "Множество"],
+        "correctIndex": 1
+    },
+    {
+        "question": "Укажите строку, в которой записан оператор присваивания",
+        "answers": ["a == b", "a = b", "a != b"],
         "correctIndex": 0
     },
     {
-        "question": "2",
-        "answers": ["", "", ""],
-        "correctIndex": 0
+        "question": "Отметьте строку программного кода, содержащую ошибку",
+        "answers": ["let a: Int = 10", "let b: String = \"14\"", "let c: String = 2"],
+        "correctIndex": 2
     },
     {
-        "question": "3",
-        "answers": ["", "", ""],
-        "correctIndex": 0
+        "question": "Что произойдёт при обращении к массиву из пяти элементов по индексу 5?",
+        "answers": ["Будет возвращен nil", "Возникнет ошибка", "Будет возвращено значение пятого элемента"],
+        "correctIndex": 1
     },
     {
-        "question": "4",
-        "answers": ["", "", ""],
-        "correctIndex": 0
+        "question": "В каком типе коллекции все хранимые элементы уникальны?",
+        "answers": ["Массив", "Словарь", "Множество"],
+        "correctIndex": 2
     },
     {
-        "question": "5",
-        "answers": ["", "", ""],
-        "correctIndex": 0
-    },
-    {
-        "question": "6",
-        "answers": ["", "", ""],
-        "correctIndex": 0
-    },
-    {
-        "question": "7",
-        "answers": ["", "", ""],
-        "correctIndex": 0
-    },
-    {
-        "question": "8",
-        "answers": ["", "", ""],
-        "correctIndex": 0
-    },
-    {
-        "question": "9",
-        "answers": ["", "", ""],
+        "question": "В каком типе коллекции все хранимые элементы упорядочены?",
+        "answers": ["Массив", "Словарь", "Множество"],
         "correctIndex": 0
     }
 ]

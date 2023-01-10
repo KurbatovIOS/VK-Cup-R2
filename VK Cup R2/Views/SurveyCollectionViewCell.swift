@@ -20,6 +20,7 @@ class SurveyCollectionViewCell: UICollectionViewCell {
         
         answerLabel.text = answer
         answerLabel.font = UIFont.preferredFont(forTextStyle: .title3)
+        answerLabel.numberOfLines = 0
         
         answerLabel.translatesAutoresizingMaskIntoConstraints = false
         

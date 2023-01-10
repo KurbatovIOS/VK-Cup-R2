@@ -25,13 +25,10 @@ class SurveyVC: UIViewController {
     private var currentQuestionIndex = 0
     private var questionCount = 0
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        anserTableView.delegate = self
-//        anserTableView.dataSource = self
-        
+                
         answerCollectionView.delegate = self
         answerCollectionView.dataSource = self
         
@@ -52,7 +49,7 @@ class SurveyVC: UIViewController {
     private func configuteQuestionCountLable() {
         
         view.addSubview(questionCountLabel)
-                
+        
         questionCountLabel.textColor = .systemGray
         
         questionCountLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -82,25 +79,6 @@ class SurveyVC: UIViewController {
         ])
     }
     
-//    private func configureAnserTableView() {
-//
-//        view.addSubview(anserTableView)
-//
-//        anserTableView.register(CustomTableViewCell.self, forCellReuseIdentifier: Helpers.surveyVCIdentifier)
-//
-//        anserTableView.separatorStyle = .none
-//        anserTableView.isScrollEnabled = false
-//
-//        anserTableView.translatesAutoresizingMaskIntoConstraints = false
-//
-//        NSLayoutConstraint.activate([
-//            anserTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-//            anserTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-//            anserTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
-//            anserTableView.topAnchor.constraint(equalTo: questionLabel.bottomAnchor, constant: 30)
-//        ])
-//    }
-    
     private func configureAnswerCollectionView() {
         
         view.addSubview(answerCollectionView)
@@ -117,7 +95,7 @@ class SurveyVC: UIViewController {
             answerCollectionView.topAnchor.constraint(equalTo: questionLabel.bottomAnchor, constant: 30)
         ])
     }
-
+    
     
     // MARK: -
     
@@ -126,19 +104,12 @@ class SurveyVC: UIViewController {
         questionCountLabel.text = "Вопрос \(questionCount+1)"
         questionLabel.text = survey[currentQuestionIndex].question
         
-        //anserTableView.reloadData()
+        answerCollectionView.allowsSelection = true
+        answerCollectionView.reloadData()
     }
     
     private func checkAnswer(indexPathForSelectedCell indexPath: IndexPath) {
         
-        let cell = anserTableView.cellForRow(at: indexPath)
-        
-        if indexPath.row == survey[currentQuestionIndex].correctIndex {
-            cell?.backgroundView?.backgroundColor = .green
-        }
-        else {
-            cell?.backgroundView?.backgroundColor = .red
-        }
         
     }
     
@@ -159,7 +130,7 @@ extension SurveyVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let width = answerCollectionView.frame.width
-        let heigh = view.frame.height * 0.07
+        let heigh = view.frame.height * 0.08
         
         return CGSize(width: width, height: heigh)
     }
@@ -169,11 +140,31 @@ extension SurveyVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        answerCollectionView.allowsSelection = false
+        
+        checkAnswer(indexPathForSelectedCell: indexPath)
+        
+        let cell = answerCollectionView.cellForItem(at: indexPath)
+        
+        let bgColor: UIColor = indexPath.row == survey[currentQuestionIndex].correctIndex ? .green : .red
+        
+        questionCount += 1
+        currentQuestionIndex += 1
+        
+        if currentQuestionIndex == survey.count {
+            currentQuestionIndex = 0
+        }
+        
+        UIView.animate(withDuration: 0.5) {
+            cell?.backgroundColor = bgColor
+        } completion: { _ in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                cell?.backgroundColor = .systemGray5
+                self.displayQuestion()
+            }
+        }
     }
-    
-    
-    
-    
 }
 
 //extension SurveyVC: UITableViewDelegate, UITableViewDataSource {
