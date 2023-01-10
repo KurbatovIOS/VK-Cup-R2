@@ -73,7 +73,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = elementsTableView.dequeueReusableCell(withIdentifier: Helpers.homeVCIdentifier, for: indexPath) as! CustomTableViewCell
-        cell.configureCell(text: mainModel.elements[indexPath.row], bgColor: .systemBlue, cornerRadius: 10, alignment: .center)
+        cell.configureCell(text: mainModel.elements[indexPath.row])
         return cell
     }
     

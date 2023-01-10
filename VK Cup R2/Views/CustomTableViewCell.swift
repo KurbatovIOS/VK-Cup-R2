@@ -13,7 +13,7 @@ class CustomTableViewCell: UITableViewCell {
     private let clearBgView = UIView()
     private let titleLabel = UILabel()
     
-    func configureCell(text: String, bgColor: UIColor, cornerRadius: CGFloat, alignment: Helpers.TitleAlignment) {
+    func configureCell(text: String) {
         
         selectionStyle = .none
         
@@ -24,9 +24,9 @@ class CustomTableViewCell: UITableViewCell {
         clearBgView.addSubview(bgView)
         clearBgView.addSubview(titleLabel)
         
-        bgView.backgroundColor = bgColor
+        bgView.backgroundColor = .systemBlue
         bgView.alpha = 0.5
-        bgView.layer.cornerRadius = cornerRadius
+        bgView.layer.cornerRadius = 10
         bgView.clipsToBounds = true
         
         titleLabel.text = text
@@ -42,14 +42,7 @@ class CustomTableViewCell: UITableViewCell {
             bgView.topAnchor.constraint(equalTo: topAnchor),
             bgView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15),
             titleLabel.centerYAnchor.constraint(equalTo: bgView.centerYAnchor),
+            titleLabel.centerXAnchor.constraint(equalTo: bgView.centerXAnchor)
         ])
-        
-        if alignment == .center {
-            titleLabel.centerXAnchor.constraint(equalTo: bgView.centerXAnchor).isActive = true
-        }
-        else {
-            titleLabel.leadingAnchor.constraint(equalTo: bgView.leadingAnchor, constant: 15).isActive = true
-            titleLabel.trailingAnchor.constraint(equalTo: bgView.trailingAnchor, constant: -15).isActive = true
-        }
     }
 }

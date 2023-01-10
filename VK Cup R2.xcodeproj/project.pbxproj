@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B84F95A82969CB3A003797FA /* SurveyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84F95A72969CB3A003797FA /* SurveyVC.swift */; };
 		B84F95AA2969CBBF003797FA /* SurveyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84F95A92969CBBF003797FA /* SurveyModel.swift */; };
+		B8676DB0296D88C9002F9779 /* SurveyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8676DAF296D88C9002F9779 /* SurveyCollectionViewCell.swift */; };
 		B88CCD422968B63B0039B9FA /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88CCD412968B63B0039B9FA /* MainModel.swift */; };
 		B8CF153A2966DD6D000EEFD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF15392966DD6D000EEFD5 /* AppDelegate.swift */; };
 		B8CF153C2966DD6D000EEFD5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF153B2966DD6D000EEFD5 /* SceneDelegate.swift */; };
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		B84F95A72969CB3A003797FA /* SurveyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyVC.swift; sourceTree = "<group>"; };
 		B84F95A92969CBBF003797FA /* SurveyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyModel.swift; sourceTree = "<group>"; };
+		B8676DAF296D88C9002F9779 /* SurveyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCollectionViewCell.swift; sourceTree = "<group>"; };
 		B88CCD412968B63B0039B9FA /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		B8CF15362966DD6D000EEFD5 /* VK Cup R2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VK Cup R2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8CF15392966DD6D000EEFD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				B8FF7A8D29675A0C000950B2 /* CustomTableViewCell.swift */,
+				B8676DAF296D88C9002F9779 /* SurveyCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 				B88CCD422968B63B0039B9FA /* MainModel.swift in Sources */,
 				B8E9010B296818A100B9AEC5 /* Question.swift in Sources */,
 				B8CF153C2966DD6D000EEFD5 /* SceneDelegate.swift in Sources */,
+				B8676DB0296D88C9002F9779 /* SurveyCollectionViewCell.swift in Sources */,
 				B8CF15512966ED45000EEFD5 /* Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
