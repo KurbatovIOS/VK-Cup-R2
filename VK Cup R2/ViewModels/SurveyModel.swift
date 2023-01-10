@@ -28,10 +28,7 @@ class SurveyModel {
         do {
             let data = try Data(contentsOf: url)
             survey = try decoder.decode([Question].self, from: data)
-            
-            DispatchQueue.main.async {
-                self.delegate?.getQuestions(self.survey)
-            }
+            delegate?.getQuestions(self.survey)
         }
         catch {
             print("Error")

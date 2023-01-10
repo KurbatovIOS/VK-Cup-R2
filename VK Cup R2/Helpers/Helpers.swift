@@ -7,9 +7,14 @@
 
 import Foundation
 
-class Identifiers {
+class Helpers {
     
     static let homeVCIdentifier = "homeCell"
     static let surveyVCIdentifier = "surveyCell"
+    
+    enum TitleAlignment {
+        case left
+        case center
+    }
     
 }

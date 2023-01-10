@@ -14,23 +14,28 @@ class SurveyVC: UIViewController {
     private let questionCountLabel = UILabel()
     private let questionLabel = UILabel()
     
-    private var count = 0
+    private let surveyModel = SurveyModel()
+    private var survey = [Question]()
+    private var currentQuestionIndex = 0
+    private var questionCount = 0
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         anserTableView.delegate = self
         anserTableView.dataSource = self
         
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         
         configuteQuestionCountLable()
         configuteQuestionLable()
         configureAnserTableView()
         
-        displayQuestion()
+        surveyModel.delegate = self
+        surveyModel.loadQuestions()
     }
+    
     
     // MARK: - views configuration
     
@@ -38,7 +43,7 @@ class SurveyVC: UIViewController {
         
         view.addSubview(questionCountLabel)
                 
-        questionCountLabel.textColor = .systemGray2
+        questionCountLabel.textColor = .systemGray
         
         questionCountLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -55,9 +60,10 @@ class SurveyVC: UIViewController {
         
         view.addSubview(questionLabel)
         
-        questionLabel.translatesAutoresizingMaskIntoConstraints = false
+        questionLabel.font = UIFont.boldSystemFont(ofSize: 22)
+        questionLabel.numberOfLines = 0
         
-        questionLabel.font = UIFont.boldSystemFont(ofSize: 23)
+        questionLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             questionLabel.leadingAnchor.constraint(equalTo: questionCountLabel.leadingAnchor),
@@ -70,9 +76,10 @@ class SurveyVC: UIViewController {
         
         view.addSubview(anserTableView)
         
-        anserTableView.register(SurveyTableViewCell.self, forCellReuseIdentifier: Identifiers.surveyVCIdentifier)
+        anserTableView.register(CustomTableViewCell.self, forCellReuseIdentifier: Helpers.surveyVCIdentifier)
         
         anserTableView.separatorStyle = .none
+        anserTableView.isScrollEnabled = false
         
         anserTableView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -80,7 +87,7 @@ class SurveyVC: UIViewController {
             anserTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             anserTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             anserTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
-            anserTableView.topAnchor.constraint(equalTo: questionLabel.bottomAnchor, constant: 50)
+            anserTableView.topAnchor.constraint(equalTo: questionLabel.bottomAnchor, constant: 30)
         ])
     }
     
@@ -88,31 +95,63 @@ class SurveyVC: UIViewController {
     
     private func displayQuestion() {
         
-        count += 1
-        questionCountLabel.text = "Вопрос \(count)"
+        questionCountLabel.text = "Вопрос \(questionCount+1)"
+        questionLabel.text = survey[currentQuestionIndex].question
         
-        questionLabel.text = "Вот он первый вопрос"
+        anserTableView.reloadData()
+    }
+    
+    private func checkAnswer(indexPathForSelectedCell indexPath: IndexPath) {
         
-        // get question label
-        // set answer cells
-        // reload teble view
+        let cell = anserTableView.cellForRow(at: indexPath)
+        
+        if indexPath.row == survey[currentQuestionIndex].correctIndex {
+            cell?.backgroundView?.backgroundColor = .green
+        }
+        else {
+            cell?.backgroundView?.backgroundColor = .red
+        }
         
     }
+    
 }
 
 extension SurveyVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return survey[currentQuestionIndex].answers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = anserTableView.dequeueReusableCell(withIdentifier: Identifiers.surveyVCIdentifier, for: indexPath) as! SurveyTableViewCell
-        cell.configureCell(text: "AAAA \(indexPath.row)")
+        let cell = anserTableView.dequeueReusableCell(withIdentifier: Helpers.surveyVCIdentifier, for: indexPath) as! CustomTableViewCell
+        cell.configureCell(text: survey[currentQuestionIndex].answers[indexPath.row], bgColor: .systemGray3, cornerRadius: 5, alignment: .left)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return view.frame.height * 0.07
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        checkAnswer(indexPathForSelectedCell: indexPath)
+        
+//        questionCount += 1
+//
+//        currentQuestionIndex += 1
+//
+//        if currentQuestionIndex == survey.count {
+//            currentQuestionIndex = 0
+//        }
+//        displayQuestion()
+    }
+    
+}
+
+extension SurveyVC: SurveyModelDelegate {
+    
+    func getQuestions(_ questions: [Question]) {
+        self.survey = questions
+        displayQuestion()
     }
 }

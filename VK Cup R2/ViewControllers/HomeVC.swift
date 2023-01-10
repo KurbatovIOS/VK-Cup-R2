@@ -10,6 +10,8 @@ import UIKit
 class HomeViewController: UIViewController {
     
     private let elementsTableView = UITableView()
+    //private let titleLabel = UILabel()
+    
     private let mainModel = MainModel()
 
     override func viewDidLoad() {
@@ -20,21 +22,37 @@ class HomeViewController: UIViewController {
         
         view.backgroundColor = .systemBackground
         
-        title = "Выбор"
-        navigationItem.backButtonTitle = "Назад"
+        navigationItem.backButtonTitle = ""
         
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        
+        //configureTitleLabel()
         configureTableView()
     }
     
+//    private func configureTitleLabel() {
+//
+//        view.addSubview(titleLabel)
+//
+//        titleLabel.font = UIFont.boldSystemFont(ofSize: 35)
+//        titleLabel.text = "С чего начнём?"
+//
+//        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+//
+//        NSLayoutConstraint.activate([
+//            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+//            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+//            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15)
+//        ])
+//
+//    }
+        
     private func configureTableView() {
         
         view.addSubview(elementsTableView)
         
-        elementsTableView.register(ElementTableViewCell.self, forCellReuseIdentifier: Identifiers.homeVCIdentifier)
+        elementsTableView.register(CustomTableViewCell.self, forCellReuseIdentifier: Helpers.homeVCIdentifier)
         
         elementsTableView.separatorStyle = .none
+        elementsTableView.isScrollEnabled = false
         
         elementsTableView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -54,8 +72,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = elementsTableView.dequeueReusableCell(withIdentifier: Identifiers.homeVCIdentifier, for: indexPath) as! ElementTableViewCell
-        cell.configureCell(text: mainModel.elements[indexPath.row])
+        let cell = elementsTableView.dequeueReusableCell(withIdentifier: Helpers.homeVCIdentifier, for: indexPath) as! CustomTableViewCell
+        cell.configureCell(text: mainModel.elements[indexPath.row], bgColor: .systemBlue, cornerRadius: 10, alignment: .center)
         return cell
     }
     
