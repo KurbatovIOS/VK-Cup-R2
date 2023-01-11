@@ -15,7 +15,6 @@ protocol SurveyModelDelegate {
 
 class SurveyModel {
     
-    var survey = [Question]()
     var delegate: SurveyModelDelegate?
     
     func loadQuestions() {
@@ -27,18 +26,11 @@ class SurveyModel {
        
         do {
             let data = try Data(contentsOf: url)
-            survey = try decoder.decode([Question].self, from: data)
-            delegate?.getQuestions(self.survey)
+            let decoded = try decoder.decode([Question].self, from: data)
+            delegate?.getQuestions(decoded)
         }
         catch {
             print("Error")
         }
-    }
-    
-    func checkAnswer() -> (correctIndex: Int, wrongIndex: Int?) {
-        
-        
-        
-        return (1, nil)
     }
 }

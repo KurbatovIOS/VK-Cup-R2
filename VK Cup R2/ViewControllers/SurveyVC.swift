@@ -8,14 +8,8 @@
 import UIKit
 
 class SurveyVC: UIViewController {
-    
-    private let anserTableView = UITableView()
-    
-    private let answerCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        return view
-    }()
+        
+    private var answerCollectionView: UICollectionView!
     
     private let questionCountLabel = UILabel()
     private let questionLabel = UILabel()
@@ -25,14 +19,18 @@ class SurveyVC: UIViewController {
     private var currentQuestionIndex = 0
     private var questionCount = 0
     
+    private let mainModel = MainModel()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .systemBackground
+        
+        answerCollectionView = mainModel.createCollectionView()
                 
         answerCollectionView.delegate = self
         answerCollectionView.dataSource = self
-        
-        view.backgroundColor = .systemBackground
         
         configuteQuestionCountLable()
         configuteQuestionLable()

@@ -10,7 +10,7 @@ import UIKit
 class HomeViewController: UIViewController {
     
     private let elementsTableView = UITableView()
-    private let elements = ["Опрос", "2", "3", "4", "Оценка"]
+    private let elements = ["Опрос", "Сопоставление", "3", "4", "Оценка"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +68,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
         case 0:
             destinationVC = SurveyVC()
-//        case 1:
+        case 1:
+            destinationVC = ComparisonVC()
 //        case 2:
 //        case 3:
         case 4:

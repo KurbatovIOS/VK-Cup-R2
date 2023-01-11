@@ -11,6 +11,12 @@ import UIKit
 class MainModel {
     
 
+    func createCollectionView() -> UICollectionView {
+        
+        let layout = UICollectionViewFlowLayout()
+        let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        return view
+    }
     
 //    func buttonAnimation(view: UIView) {
 //
