@@ -33,7 +33,7 @@ class SurveyCollectionViewCell: UICollectionViewCell {
         
         NSLayoutConstraint.activate([
             answerLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            answerLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8),
+            answerLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.75),
             answerLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             
             answerPercent.leadingAnchor.constraint(equalTo: answerLabel.trailingAnchor, constant: 5),

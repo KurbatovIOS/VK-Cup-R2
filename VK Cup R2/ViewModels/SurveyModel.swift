@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol SurveyModelDelegate {
     
@@ -32,5 +33,12 @@ class SurveyModel {
         catch {
             print("Error")
         }
+    }
+    
+    func checkAnswer() -> (correctIndex: Int, wrongIndex: Int?) {
+        
+        
+        
+        return (1, nil)
     }
 }

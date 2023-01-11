@@ -12,8 +12,6 @@ class HomeViewController: UIViewController {
     private let elementsTableView = UITableView()
     private let elements = ["Опрос", "2", "3", "4", "Оценка"]
     
-    //private let mainModel = MainModel()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,26 +22,8 @@ class HomeViewController: UIViewController {
         
         navigationItem.backButtonTitle = ""
         
-        //configureTitleLabel()
         configureTableView()
     }
-    
-//    private func configureTitleLabel() {
-//
-//        view.addSubview(titleLabel)
-//
-//        titleLabel.font = UIFont.boldSystemFont(ofSize: 35)
-//        titleLabel.text = "С чего начнём?"
-//
-//        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-//
-//        NSLayoutConstraint.activate([
-//            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-//            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-//            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15)
-//        ])
-//
-//    }
         
     private func configureTableView() {
         

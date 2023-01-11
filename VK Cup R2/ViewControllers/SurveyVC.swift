@@ -74,7 +74,7 @@ class SurveyVC: UIViewController {
         NSLayoutConstraint.activate([
             questionLabel.leadingAnchor.constraint(equalTo: questionCountLabel.leadingAnchor),
             questionLabel.trailingAnchor.constraint(equalTo: questionCountLabel.trailingAnchor),
-            questionLabel.topAnchor.constraint(equalTo: questionCountLabel.bottomAnchor, constant: 10),
+            questionLabel.topAnchor.constraint(equalTo: questionCountLabel.bottomAnchor, constant: 30),
         ])
     }
     
@@ -138,14 +138,22 @@ extension SurveyVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
         
         let cells = answerCollectionView.visibleCells as! [SurveyCollectionViewCell]
         
+        var correctCell: UICollectionViewCell?
+        var wrongCell: UICollectionViewCell?
+
         for cell in cells {
             cell.answerPercent.alpha = 1
+            
+            let index = answerCollectionView.indexPath(for: cell)
+           
+            if index?.row == survey[currentQuestionIndex].correctIndex {
+                correctCell = cell
+            }
+            else if index?.row != survey[currentQuestionIndex].correctIndex && indexPath == index {
+                wrongCell = answerCollectionView.cellForItem(at: indexPath)
+            }
         }
-        
-        let cell = answerCollectionView.cellForItem(at: indexPath)
-        
-        let bgColor: UIColor = indexPath.row == survey[currentQuestionIndex].correctIndex ? .green : .red
-        
+                
         questionCount += 1
         currentQuestionIndex += 1
         
@@ -154,10 +162,12 @@ extension SurveyVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
         }
         
         UIView.animate(withDuration: 0.5) {
-            cell?.backgroundColor = bgColor
+            correctCell!.backgroundColor = .green
+            if wrongCell != nil {
+                wrongCell?.backgroundColor = .red
+            }
         } completion: { _ in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                cell?.backgroundColor = .systemGray5
                 self.displayQuestion()
             }
         }
