@@ -10,7 +10,7 @@ import UIKit
 class ComparisonVC: UIViewController {
     
     private let titleLabel = UILabel()
- 
+    
     private var leftColumnCollectionView: UICollectionView!
     private var rightColumnCollectionView: UICollectionView!
     
@@ -20,6 +20,7 @@ class ComparisonVC: UIViewController {
     private let comparisonModel = ComparisonModel()
     
     private var currentComparisonIndex = 0
+    private var selectedPairIndexes: (left: Int?, right: Int?)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,28 +108,54 @@ extension ComparisonVC: UICollectionViewDelegate, UICollectionViewDataSource, UI
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let width = collectionView.frame.width - 20
-   
+        
         return CGSize(width: width, height: 60)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    
+        
         if let cell = collectionView.cellForItem(at: indexPath) {
             mainModel.clickAnimation(view: cell)
         }
         
-      
+        collectionView.allowsSelection = false
         
-//        collectionView.allowsSelection = false
-//
-//        if collectionView == leftColumnCollectionView && rightColumnCollectionView.allowsSelection == false {
-//
-//            // chack match
-//            // show result
-//            // if it was the last pare show next question
-//        }
-//        else {
-//        }
+        if collectionView == leftColumnCollectionView {
+            selectedPairIndexes.left = indexPath.row
+        } else {
+            selectedPairIndexes.right = indexPath.row
+        }
+        
+        if selectedPairIndexes.left != nil && selectedPairIndexes.right != nil {
+            
+            if elements[currentComparisonIndex].matching.contains(where: { pair in
+                pair.leftIndex == selectedPairIndexes.left && pair.rightIndex == selectedPairIndexes.right
+            }) {
+                // it's a match
+                print("It's a match")
+            }
+            else {
+                // it's not a match
+                print("It's not a match")
+            }
+            
+            // chack match
+            // show result
+            // if it was the last pare show next question
+            // clear selected pair values
+            selectedPairIndexes.left = nil
+            selectedPairIndexes.right = nil
+            
+            leftColumnCollectionView.allowsSelection = true
+            rightColumnCollectionView.allowsSelection = true
+        }
+        //
+        //        if collectionView == leftColumnCollectionView && rightColumnCollectionView.allowsSelection == false {
+        //
+        
+        //        }
+        //        else {
+        //        }
     }
 }
 
