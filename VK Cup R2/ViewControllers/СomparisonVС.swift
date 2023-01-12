@@ -20,8 +20,21 @@ class ComparisonVC: UIViewController {
     private let comparisonModel = ComparisonModel()
     
     private var selectedPairIndexPaths: (left: IndexPath?, right: IndexPath?)
-    private var correctPairCounter = 0
     private var currentComparisonIndex = 0
+    
+    private var correctPairCounter = 0 {
+        didSet{
+            if correctPairCounter == 4 {
+                leftColumnCollectionView.reloadData()
+                rightColumnCollectionView.reloadData()
+                correctPairCounter = 0
+                currentComparisonIndex += 1
+                if currentComparisonIndex == elements.count {
+                    currentComparisonIndex = 0
+                }
+            }
+        }
+    }
     
     
     override func viewDidLoad() {
@@ -139,13 +152,16 @@ extension ComparisonVC: UICollectionViewDelegate, UICollectionViewDataSource, UI
             }) {
                 // it's a match
                 print("It's a match")
-                correctPairCounter += 1
-                UIView.animate(withDuration: 1.2) {
+                UIView.animate(withDuration: 1) {
                     leftCell?.backgroundColor = .green
                     rightCell?.backgroundColor = .green
                 } completion: { _ in
-                    leftCell?.alpha = 0
-                    rightCell?.alpha = 0
+                    UIView.animate(withDuration: 0.2) {
+                        leftCell?.alpha = 0
+                        rightCell?.alpha = 0
+                    } completion: { _ in
+                        self.correctPairCounter += 1
+                    }
                 }
             }
             else {
@@ -161,7 +177,6 @@ extension ComparisonVC: UICollectionViewDelegate, UICollectionViewDataSource, UI
                 }
             }
         
-            // TODO: if it was the last pare show next question
             // TODO: Create funtions to reduce duplicated code
            
             selectedPairIndexPaths.left = nil

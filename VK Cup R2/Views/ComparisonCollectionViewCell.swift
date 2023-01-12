@@ -13,8 +13,11 @@ class ComparisonCollectionViewCell: UICollectionViewCell {
     
     func configureCell(text: String) {
         
-        addSubview(elementLabel)
+        backgroundColor = .systemBackground
+        alpha = 1
         
+        addSubview(elementLabel)
+
         layer.cornerRadius = 10
         layer.borderWidth = 3
         layer.borderColor = traitCollection.userInterfaceStyle == .dark ? UIColor.white.cgColor : UIColor.black.cgColor

@@ -22,4 +22,27 @@
             
         ]
     },
+    {
+        "leftCollection": ["1", "2", "3", "4"],
+        "rightCollection": ["Один", "Два", "Три", "Четыре"],
+        "matching": [
+            {
+                "leftIndex" : 0,
+                "rightIndex" : 0,
+            },
+            {
+                "leftIndex" : 1,
+                "rightIndex" : 1,
+            },
+            {
+                "leftIndex" : 2,
+                "rightIndex" : 2,
+            },
+            {
+                "leftIndex" : 3,
+                "rightIndex" : 3,
+            },
+            
+        ]
+    },
 ]
