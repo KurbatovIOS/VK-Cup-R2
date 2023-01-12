@@ -19,8 +19,10 @@ class ComparisonVC: UIViewController {
     private let mainModel = MainModel()
     private let comparisonModel = ComparisonModel()
     
+    private var selectedPairIndexPaths: (left: IndexPath?, right: IndexPath?)
+    private var correctPairCounter = 0
     private var currentComparisonIndex = 0
-    private var selectedPairIndexes: (left: Int?, right: Int?)
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,46 +118,58 @@ extension ComparisonVC: UICollectionViewDelegate, UICollectionViewDataSource, UI
         
         if let cell = collectionView.cellForItem(at: indexPath) {
             mainModel.clickAnimation(view: cell)
+            cell.backgroundColor = .systemGray5
         }
         
         collectionView.allowsSelection = false
         
         if collectionView == leftColumnCollectionView {
-            selectedPairIndexes.left = indexPath.row
+            selectedPairIndexPaths.left = indexPath
         } else {
-            selectedPairIndexes.right = indexPath.row
+            selectedPairIndexPaths.right = indexPath
         }
         
-        if selectedPairIndexes.left != nil && selectedPairIndexes.right != nil {
+        if selectedPairIndexPaths.left != nil && selectedPairIndexPaths.right != nil {
+            
+            let leftCell = leftColumnCollectionView.cellForItem(at: selectedPairIndexPaths.left!)
+            let rightCell = rightColumnCollectionView.cellForItem(at: selectedPairIndexPaths.right!)
             
             if elements[currentComparisonIndex].matching.contains(where: { pair in
-                pair.leftIndex == selectedPairIndexes.left && pair.rightIndex == selectedPairIndexes.right
+                pair.leftIndex == selectedPairIndexPaths.left?.row && pair.rightIndex == selectedPairIndexPaths.right?.row
             }) {
                 // it's a match
                 print("It's a match")
+                correctPairCounter += 1
+                UIView.animate(withDuration: 1.2) {
+                    leftCell?.backgroundColor = .green
+                    rightCell?.backgroundColor = .green
+                } completion: { _ in
+                    leftCell?.alpha = 0
+                    rightCell?.alpha = 0
+                }
             }
             else {
                 // it's not a match
                 print("It's not a match")
+                
+                UIView.animate(withDuration: 1.2) {
+                    leftCell?.backgroundColor = .red
+                    rightCell?.backgroundColor = .red
+                } completion: { _ in
+                    leftCell?.backgroundColor = .systemBackground
+                    rightCell?.backgroundColor = .systemBackground
+                }
             }
-            
-            // chack match
-            // show result
-            // if it was the last pare show next question
-            // clear selected pair values
-            selectedPairIndexes.left = nil
-            selectedPairIndexes.right = nil
+        
+            // TODO: if it was the last pare show next question
+            // TODO: Create funtions to reduce duplicated code
+           
+            selectedPairIndexPaths.left = nil
+            selectedPairIndexPaths.right = nil
             
             leftColumnCollectionView.allowsSelection = true
             rightColumnCollectionView.allowsSelection = true
         }
-        //
-        //        if collectionView == leftColumnCollectionView && rightColumnCollectionView.allowsSelection == false {
-        //
-        
-        //        }
-        //        else {
-        //        }
     }
 }
 
