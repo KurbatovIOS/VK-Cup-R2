@@ -15,14 +15,19 @@ class ComparisonCollectionViewCell: UICollectionViewCell {
         
         addSubview(elementLabel)
         
-        layer.cornerRadius = 5
+        layer.cornerRadius = 10
+        layer.borderWidth = 3
+        layer.borderColor = traitCollection.userInterfaceStyle == .dark ? UIColor.white.cgColor : UIColor.black.cgColor
                 
         elementLabel.text = text
+        elementLabel.textAlignment = .center
+        elementLabel.numberOfLines = 0
 
         elementLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            elementLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8),
+            elementLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
+            elementLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
             elementLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             elementLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])

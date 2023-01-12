@@ -11,6 +11,8 @@ class Helpers {
     
     static let homeVCIdentifier = "homeCell"
     static let surveyVCIdentifier = "surveyCell"
+    static let rightColumnIdentifier = "rightColumnCell"
+    static let letfColumnIdentifier = "leftColumnCell"
     
     enum TitleAlignment {
         case left
