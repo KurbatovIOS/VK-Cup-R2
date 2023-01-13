@@ -21,6 +21,16 @@ class MainModel {
         return view
     }
     
+    func createAlert(message: String) -> UIAlertController {
+        
+        let alert = UIAlertController(title: "Ошибка ввода", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .cancel)
+        
+        alert.addAction(action)
+        
+        return alert
+    }
+    
     func clickAnimation(view: UIView) {
 
         let viewsOriginalTransform = view.transform
@@ -32,7 +42,5 @@ class MainModel {
                 view.transform = CGAffineTransformScale(viewsOriginalTransform, 1, 1)
             }
         }
-
     }
-    
 }
