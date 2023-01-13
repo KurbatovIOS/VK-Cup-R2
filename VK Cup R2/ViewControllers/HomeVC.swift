@@ -10,7 +10,7 @@ import UIKit
 class HomeViewController: UIViewController {
     
     private let elementsTableView = UITableView()
-    private let elements = ["Опрос", "Сопоставление", "3", "4", "Оценка"]
+    private let elements = ["Опрос", "Сопоставление", "3", "Заполнение пропусков", "Оценка"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,7 +71,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         case 1:
             destinationVC = ComparisonVC()
 //        case 2:
-//        case 3:
+        case 3:
+            destinationVC = FillTextVC()
         case 4:
             destinationVC = RatingVC()
         default:
