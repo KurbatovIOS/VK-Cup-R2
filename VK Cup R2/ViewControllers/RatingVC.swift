@@ -42,6 +42,7 @@ class RatingVC: UIViewController {
         titleLabel.text = "Пожалуйста, оцените статью"
         titleLabel.textAlignment = .center
         titleLabel.font = .preferredFont(forTextStyle: .title2)
+        titleLabel.numberOfLines = 0
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -82,7 +83,9 @@ class RatingVC: UIViewController {
     @objc private func updateRating(sender: UIButton) {
         rating = sender.tag + 1
         titleLabel.alpha = 0
-        titleLabel.text = "Спасибо за ваш отзыв!"
+        let message = rating < 3 ? "Мы будем стараться лучше!" : "Мы рады, что статья вам понравилась!"
+        titleLabel.text = "Спасибо за ваше мнение!\n\n" + message
+        
         UIView.animate(withDuration: 1) {
             self.titleLabel.alpha = 1
         }
