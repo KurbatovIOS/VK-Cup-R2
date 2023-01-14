@@ -9,59 +9,71 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    private let elementsTableView = UITableView()
+    private var elementsCollectionView: UICollectionView!
     private let elements = ["Опрос", "Сопоставление", "3", "Заполнение пропусков", "Оценка"]
+    
+    private let model = MainModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        elementsTableView.delegate = self
-        elementsTableView.dataSource = self
+        elementsCollectionView = model.createCollectionView()
+        
+        elementsCollectionView.delegate = self
+        elementsCollectionView.dataSource = self
         
         view.backgroundColor = .systemBackground
         
         navigationItem.backButtonTitle = ""
         
-        configureTableView()
+        configureElementsCollectionView()
     }
         
-    private func configureTableView() {
+    private func configureElementsCollectionView() {
         
-        view.addSubview(elementsTableView)
+        view.addSubview(elementsCollectionView)
         
-        elementsTableView.register(CustomTableViewCell.self, forCellReuseIdentifier: Helpers.homeVCIdentifier)
+        elementsCollectionView.register(HomeCollectionViewCell.self, forCellWithReuseIdentifier: Helpers.homeVCIdentifier)
         
-        elementsTableView.separatorStyle = .none
-        elementsTableView.isScrollEnabled = false
-        
-        elementsTableView.translatesAutoresizingMaskIntoConstraints = false
+        elementsCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        elementsCollectionView.isScrollEnabled = false
         
         NSLayoutConstraint.activate([
-            elementsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-            elementsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            elementsTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
-            elementsTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            elementsCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            elementsCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            elementsCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15),
+            elementsCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
     }
 }
 
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return elements.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = elementsTableView.dequeueReusableCell(withIdentifier: Helpers.homeVCIdentifier, for: indexPath) as! CustomTableViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = elementsCollectionView.dequeueReusableCell(withReuseIdentifier: Helpers.homeVCIdentifier, for: indexPath) as! HomeCollectionViewCell
         cell.configureCell(text: elements[indexPath.row])
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view.frame.height * 0.1
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let width = elementsCollectionView.frame.width
+        let heigh = view.frame.height * 0.1
+        
+        return CGSize(width: width, height: heigh)
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let destinationVC: Any?
         
@@ -82,4 +94,3 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         navigationController?.pushViewController(destinationVC as! UIViewController, animated: true)
     }
 }
-

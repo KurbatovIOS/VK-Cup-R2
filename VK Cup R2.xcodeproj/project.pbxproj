@@ -10,6 +10,7 @@
 		B81E746F2972ABB70053DC60 /* FillGapData.json in Resources */ = {isa = PBXBuildFile; fileRef = B81E746E2972ABB70053DC60 /* FillGapData.json */; };
 		B81E74712972AD440053DC60 /* FillGapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81E74702972AD440053DC60 /* FillGapModel.swift */; };
 		B81E74732972ADCF0053DC60 /* QuestionWithGaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81E74722972ADCF0053DC60 /* QuestionWithGaps.swift */; };
+		B81E7475297329780053DC60 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81E7474297329780053DC60 /* HomeCollectionViewCell.swift */; };
 		B829B82F297153F90091197B /* FillTextVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B829B82E297153F90091197B /* FillTextVC.swift */; };
 		B84F95A82969CB3A003797FA /* SurveyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84F95A72969CB3A003797FA /* SurveyVC.swift */; };
 		B84F95AA2969CBBF003797FA /* SurveyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84F95A92969CBBF003797FA /* SurveyModel.swift */; };
@@ -29,13 +30,13 @@
 		B8F22229296F1DFC00B54382 /* ComparisonData.json in Resources */ = {isa = PBXBuildFile; fileRef = B8F22228296F1DFC00B54382 /* ComparisonData.json */; };
 		B8F2222B296F264200B54382 /* ComparisonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F2222A296F264200B54382 /* ComparisonModel.swift */; };
 		B8F2222D296F2CA400B54382 /* ComparisonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F2222C296F2CA400B54382 /* ComparisonCollectionViewCell.swift */; };
-		B8FF7A8E29675A0C000950B2 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FF7A8D29675A0C000950B2 /* CustomTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B81E746E2972ABB70053DC60 /* FillGapData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = FillGapData.json; sourceTree = "<group>"; };
 		B81E74702972AD440053DC60 /* FillGapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillGapModel.swift; sourceTree = "<group>"; };
 		B81E74722972ADCF0053DC60 /* QuestionWithGaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionWithGaps.swift; sourceTree = "<group>"; };
+		B81E7474297329780053DC60 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		B829B82E297153F90091197B /* FillTextVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillTextVC.swift; sourceTree = "<group>"; };
 		B84F95A72969CB3A003797FA /* SurveyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyVC.swift; sourceTree = "<group>"; };
 		B84F95A92969CBBF003797FA /* SurveyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyModel.swift; sourceTree = "<group>"; };
@@ -57,7 +58,6 @@
 		B8F22228296F1DFC00B54382 /* ComparisonData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ComparisonData.json; sourceTree = "<group>"; };
 		B8F2222A296F264200B54382 /* ComparisonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparisonModel.swift; sourceTree = "<group>"; };
 		B8F2222C296F2CA400B54382 /* ComparisonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparisonCollectionViewCell.swift; sourceTree = "<group>"; };
-		B8FF7A8D29675A0C000950B2 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,7 +159,7 @@
 		B8FF7A8C296759D7000950B2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B8FF7A8D29675A0C000950B2 /* CustomTableViewCell.swift */,
+				B81E7474297329780053DC60 /* HomeCollectionViewCell.swift */,
 				B8676DAF296D88C9002F9779 /* SurveyCollectionViewCell.swift */,
 				B8F2222C296F2CA400B54382 /* ComparisonCollectionViewCell.swift */,
 			);
@@ -242,7 +242,7 @@
 				B829B82F297153F90091197B /* FillTextVC.swift in Sources */,
 				B84F95A82969CB3A003797FA /* SurveyVC.swift in Sources */,
 				B8F22224296EEFF000B54382 /* Comparison.swift in Sources */,
-				B8FF7A8E29675A0C000950B2 /* CustomTableViewCell.swift in Sources */,
+				B81E7475297329780053DC60 /* HomeCollectionViewCell.swift in Sources */,
 				B8CF153E2966DD6D000EEFD5 /* HomeVC.swift in Sources */,
 				B8CF153A2966DD6D000EEFD5 /* AppDelegate.swift in Sources */,
 				B8F2222D296F2CA400B54382 /* ComparisonCollectionViewCell.swift in Sources */,
