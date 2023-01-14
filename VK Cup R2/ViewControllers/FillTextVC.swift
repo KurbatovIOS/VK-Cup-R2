@@ -11,10 +11,14 @@ class FillTextVC: UIViewController {
     
     private let textLabel = UILabel()
     private let answerText = UITextView()
-    
     private let button = UIButton()
+    private var defaultTextFont: UIFont?
     
-    private let model = MainModel()
+    private let mainModel = MainModel()
+    private let questionModel = FillGapModel()
+    
+    private var questions = [QuestionWithGaps]()
+    private var currentQuestionIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,17 +26,22 @@ class FillTextVC: UIViewController {
         view.backgroundColor = .systemBackground
         
         answerText.delegate = self
+        questionModel.delegate = self
+        
+        questionModel.loadData()
         
         configureText()
         configureTextView()
         configureButton()
+        
+        displayQuestion()
     }
     
     private func configureText() {
         
         view.addSubview(textLabel)
         
-        textLabel.text = "Заполни _____ пропуски как _____ скорее"
+        
         textLabel.font = .preferredFont(forTextStyle: .title2)
         textLabel.textAlignment = .center
         textLabel.numberOfLines = 0
@@ -54,7 +63,7 @@ class FillTextVC: UIViewController {
         answerText.layer.borderWidth = 0.5
         answerText.layer.borderColor = traitCollection.userInterfaceStyle == .dark ? UIColor.white.cgColor : UIColor.black.cgColor
         
-        answerText.text = "Впишите два слова, разделенные пробелом"
+        defaultTextFont = answerText.font
         answerText.textColor = .lightGray
         
         answerText.translatesAutoresizingMaskIntoConstraints = false
@@ -91,36 +100,85 @@ class FillTextVC: UIViewController {
         
         if answerText.text != nil && answerText.text != "" {
             
-            answerText.text = answerText.text.lowercased()
             answerText.text = answerText.text.trimmingCharacters(in: .whitespaces)
             
             let answer = answerText.text.split(separator: " ")
             
             if answer.count == 2 {
-                checkAnswer(answer: String(answer[0]))
-                checkAnswer(answer: String(answer[1]))
                 
-                let stringRange = (textLabel.text! as NSString).range(of: String(answer[0]))
-                let string2Range = (textLabel.text! as NSString).range(of: String(answer[1]))
-
+                for ans in answer {
+                    
+                    let answerColor: UIColor = checkAnswer(answer: String(ans.lowercased()), answerIndex: 1) ? .green : .red
+                    
+                    
+                    
+                    //let answer1Range = (str as NSString).range(of: String(ans.lowercased()))
+                    
+                }
+                
+                let answer1Color: UIColor = checkAnswer(answer: String(answer[0].lowercased()), answerIndex: 1) ? .green : .red
+                let answer2Color: UIColor = checkAnswer(answer: String(answer[1].lowercased()), answerIndex: 1) ? .green : .red
+                
+                // get proper indexes
+                
+                let words = textLabel.text?.split(separator: " ")
+                var str = ""
+                
+                for i in 0..<words!.count {
+                    
+                    if !questions[currentQuestionIndex].answerIndexes.contains(i) {
+                        str += String(repeating: "#", count: words![i].count)
+                    }
+                    else {
+                        str += words![i]
+                    }
+                    
+                    str += " "
+                }
+                
+                print(String(str.dropLast(1)))
+                
+                let answer1Range = (str as NSString).range(of: String(answer[0].lowercased()))
+                let answer2Range = (str as NSString).range(of: String(answer[1].lowercased()))
+                
+                
                 let mutableAttributedString = NSMutableAttributedString.init(string: textLabel.text!)
-                mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.green, range: stringRange)
-                mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.green, range: string2Range)
-    
+                mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: answer1Color, range: answer1Range)
+                mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: answer2Color, range: answer2Range)
+                
                 textLabel.attributedText = mutableAttributedString
+                
+                mainModel.clickAnimation(view: textLabel)
+                
+                currentQuestionIndex += 1
+                
+                if currentQuestionIndex == questions.count {
+                    currentQuestionIndex = 0
+                }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+                    self.displayQuestion()
+                }
             }
             else {
-                let alert = model.createAlert(message: "Ответ должен содержать 2 слова, разделенные пробелом")
+                let alert = mainModel.createAlert(message: "Ответ должен содержать 2 слова, разделенные пробелом")
                 present(alert, animated: true)
             }
         }
         else {
-            let alert = model.createAlert(message: "Поле ответа должно быть заполнено")
+            let alert = mainModel.createAlert(message: "Поле ответа должно быть заполнено")
             present(alert, animated: true)
         }
     }
     
-    private func checkAnswer(answer: String) {
+    private func displayQuestion() {
+        
+        textLabel.text = questions[currentQuestionIndex].question
+        answerText.endEditing(true)
+        setPlaceholderText()
+    }
+    
+    private func checkAnswer(answer: String, answerIndex: Int) -> Bool {
         
         if let stratIndex = textLabel.text!.firstIndex(of: "_") {
             
@@ -129,13 +187,18 @@ class FillTextVC: UIViewController {
             let range = stratIndex..<endIndex
             
             textLabel.text?.replaceSubrange(range, with: answer)
-            
-            model.clickAnimation(view: textLabel)
-            
-            // check if it's correct
-            
-           
+
+            return answer == questions[currentQuestionIndex].correctAnswers[answerIndex]
         }
+        else {
+            return false
+        }
+    }
+    
+    private func setPlaceholderText() {
+        answerText.font = defaultTextFont
+        answerText.text = "Впишите два слова, разделенные пробелом"
+        answerText.textColor = UIColor.lightGray
     }
 }
 
@@ -151,8 +214,7 @@ extension FillTextVC: UITextFieldDelegate, UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if answerText.text.isEmpty {
-            answerText.text = "Впишите два слова, разделенные пробелом"
-            answerText.textColor = UIColor.lightGray
+            setPlaceholderText()
         }
     }
     
@@ -163,7 +225,11 @@ extension FillTextVC: UITextFieldDelegate, UITextViewDelegate {
         }
         return true
     }
-    
 }
 
-
+extension FillTextVC: FillGapModelDelegate {
+   
+    func getData(_ data: [QuestionWithGaps]) {
+        self.questions = data
+    }
+}

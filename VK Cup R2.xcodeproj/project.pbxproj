@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B81E746F2972ABB70053DC60 /* FillGapData.json in Resources */ = {isa = PBXBuildFile; fileRef = B81E746E2972ABB70053DC60 /* FillGapData.json */; };
+		B81E74712972AD440053DC60 /* FillGapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81E74702972AD440053DC60 /* FillGapModel.swift */; };
+		B81E74732972ADCF0053DC60 /* QuestionWithGaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81E74722972ADCF0053DC60 /* QuestionWithGaps.swift */; };
 		B829B82F297153F90091197B /* FillTextVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B829B82E297153F90091197B /* FillTextVC.swift */; };
 		B84F95A82969CB3A003797FA /* SurveyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84F95A72969CB3A003797FA /* SurveyVC.swift */; };
 		B84F95AA2969CBBF003797FA /* SurveyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84F95A92969CBBF003797FA /* SurveyModel.swift */; };
@@ -30,6 +33,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B81E746E2972ABB70053DC60 /* FillGapData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = FillGapData.json; sourceTree = "<group>"; };
+		B81E74702972AD440053DC60 /* FillGapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillGapModel.swift; sourceTree = "<group>"; };
+		B81E74722972ADCF0053DC60 /* QuestionWithGaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionWithGaps.swift; sourceTree = "<group>"; };
 		B829B82E297153F90091197B /* FillTextVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillTextVC.swift; sourceTree = "<group>"; };
 		B84F95A72969CB3A003797FA /* SurveyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyVC.swift; sourceTree = "<group>"; };
 		B84F95A92969CBBF003797FA /* SurveyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyModel.swift; sourceTree = "<group>"; };
@@ -104,6 +110,7 @@
 			children = (
 				B8E9010A296818A100B9AEC5 /* Question.swift */,
 				B8F22223296EEFF000B54382 /* Comparison.swift */,
+				B81E74722972ADCF0053DC60 /* QuestionWithGaps.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -126,6 +133,7 @@
 				B88CCD412968B63B0039B9FA /* MainModel.swift */,
 				B84F95A92969CBBF003797FA /* SurveyModel.swift */,
 				B8F2222A296F264200B54382 /* ComparisonModel.swift */,
+				B81E74702972AD440053DC60 /* FillGapModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -143,6 +151,7 @@
 			children = (
 				B8E9010D2968192E00B9AEC5 /* SurveyData.json */,
 				B8F22228296F1DFC00B54382 /* ComparisonData.json */,
+				B81E746E2972ABB70053DC60 /* FillGapData.json */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -217,6 +226,7 @@
 			files = (
 				B8F22229296F1DFC00B54382 /* ComparisonData.json in Resources */,
 				B8E9010E2968192E00B9AEC5 /* SurveyData.json in Resources */,
+				B81E746F2972ABB70053DC60 /* FillGapData.json in Resources */,
 				B8CF15462966DD6E000EEFD5 /* LaunchScreen.storyboard in Resources */,
 				B8CF15432966DD6E000EEFD5 /* Assets.xcassets in Resources */,
 			);
@@ -237,11 +247,13 @@
 				B8CF153A2966DD6D000EEFD5 /* AppDelegate.swift in Sources */,
 				B8F2222D296F2CA400B54382 /* ComparisonCollectionViewCell.swift in Sources */,
 				B8676DB2296DE310002F9779 /* RatingVC.swift in Sources */,
+				B81E74732972ADCF0053DC60 /* QuestionWithGaps.swift in Sources */,
 				B84F95AA2969CBBF003797FA /* SurveyModel.swift in Sources */,
 				B88CCD422968B63B0039B9FA /* MainModel.swift in Sources */,
 				B8F2222B296F264200B54382 /* ComparisonModel.swift in Sources */,
 				B8E9010B296818A100B9AEC5 /* Question.swift in Sources */,
 				B8CF153C2966DD6D000EEFD5 /* SceneDelegate.swift in Sources */,
+				B81E74712972AD440053DC60 /* FillGapModel.swift in Sources */,
 				B8F22222296EE11000B54382 /* СomparisonVС.swift in Sources */,
 				B8676DB0296D88C9002F9779 /* SurveyCollectionViewCell.swift in Sources */,
 				B8CF15512966ED45000EEFD5 /* Helpers.swift in Sources */,

@@ -1,0 +1,37 @@
+[
+    {
+        "question" : "Заполни _____ пропуски как _____ скорее",
+        "correctAnswers" : ["все", "можно"],
+        "answerIndexes" : [1,4]
+    },
+    {
+        "question" : "Вопрос",
+        "correctAnswers" : ["1", "2"],
+        "answerIndexes" : [1,4]
+    },
+    {
+        "question" : "Заполни _____ пропуски как _____ скорее",
+        "correctAnswers" : ["все", "можно"],
+        "answerIndexes" : [1,4]
+    },
+    {
+        "question" : "как _____ как как _____ как",
+        "correctAnswers" : ["все", "можно"],
+        "answerIndexes" : [1,4]
+    },
+    {
+        "question" : "Заполни _____ пропуски как _____ скорее",
+        "correctAnswers" : ["все", "можно"],
+        "answerIndexes" : [1,4]
+    },
+    {
+        "question" : "Заполни _____ пропуски как _____ скорее",
+        "correctAnswers" : ["все", "можно"],
+        "answerIndexes" : [1,4]
+    },
+    {
+        "question" : "Заполни _____ пропуски как _____ скорее",
+        "correctAnswers" : ["все", "можно"],
+        "answerIndexes" : [1,4]
+    }
+]
