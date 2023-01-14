@@ -106,41 +106,16 @@ class FillTextVC: UIViewController {
             
             if answer.count == 2 {
                 
-                for ans in answer {
-                    
-                    let answerColor: UIColor = checkAnswer(answer: String(ans.lowercased()), answerIndex: 1) ? .green : .red
-                    
-                    
-                    
-                    //let answer1Range = (str as NSString).range(of: String(ans.lowercased()))
-                    
-                }
-                
-                let answer1Color: UIColor = checkAnswer(answer: String(answer[0].lowercased()), answerIndex: 1) ? .green : .red
+                let answer1Color: UIColor = checkAnswer(answer: String(answer[0].lowercased()), answerIndex: 0) ? .green : .red
                 let answer2Color: UIColor = checkAnswer(answer: String(answer[1].lowercased()), answerIndex: 1) ? .green : .red
-                
-                // get proper indexes
-                
+            
                 let words = textLabel.text?.split(separator: " ")
-                var str = ""
                 
-                for i in 0..<words!.count {
-                    
-                    if !questions[currentQuestionIndex].answerIndexes.contains(i) {
-                        str += String(repeating: "#", count: words![i].count)
-                    }
-                    else {
-                        str += words![i]
-                    }
-                    
-                    str += " "
-                }
+                var stringForRange = makeStringForRange(words: words!, answerIndex: questions[currentQuestionIndex].answerIndexes[0])
+                let answer1Range = (stringForRange as NSString).range(of: String(answer[0].lowercased()))
                 
-                print(String(str.dropLast(1)))
-                
-                let answer1Range = (str as NSString).range(of: String(answer[0].lowercased()))
-                let answer2Range = (str as NSString).range(of: String(answer[1].lowercased()))
-                
+                stringForRange = makeStringForRange(words: words!, answerIndex: questions[currentQuestionIndex].answerIndexes[1])
+                let answer2Range = (stringForRange as NSString).range(of: String(answer[1].lowercased()))
                 
                 let mutableAttributedString = NSMutableAttributedString.init(string: textLabel.text!)
                 mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: answer1Color, range: answer1Range)
@@ -176,6 +151,25 @@ class FillTextVC: UIViewController {
         textLabel.text = questions[currentQuestionIndex].question
         answerText.endEditing(true)
         setPlaceholderText()
+    }
+    
+    private func makeStringForRange(words: [String.SubSequence], answerIndex: Int) -> String {
+        
+        var str = ""
+        
+        for i in 0..<words.count {
+            
+            if i != answerIndex {
+                str += String(repeating: "#", count: words[i].count)
+            }
+            else {
+                str += words[i]
+            }
+            
+            str += " "
+        }
+        
+        return String(str.dropLast(1))
     }
     
     private func checkAnswer(answer: String, answerIndex: Int) -> Bool {

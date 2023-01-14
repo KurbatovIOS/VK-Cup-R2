@@ -45,4 +45,13 @@ class CustomTableViewCell: UITableViewCell {
             titleLabel.centerXAnchor.constraint(equalTo: bgView.centerXAnchor)
         ])
     }
+    
+    func onAppereAnimation() {
+        
+        let randomDelay = Double.random(in: 0.0...0.5)
+        
+        UIView.animate(withDuration: 1, delay: randomDelay) {
+            self.alpha = 1
+        }
+    }
 }
