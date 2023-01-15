@@ -47,7 +47,8 @@ class RatingVC: UIViewController {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
+            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             titleLabel.bottomAnchor.constraint(equalTo: starsStack.topAnchor, constant: -40)
         ])
@@ -83,7 +84,7 @@ class RatingVC: UIViewController {
     @objc private func updateRating(sender: UIButton) {
         rating = sender.tag + 1
         titleLabel.alpha = 0
-        let message = rating < 3 ? "Мы будем стараться лучше!" : "Мы рады, что статья вам понравилась!"
+        let message = rating < 4 ? "Мы будем стараться лучше" : "Рады, что статья вам понравилась"
         titleLabel.text = "Спасибо за ваше мнение!\n\n" + message
         
         UIView.animate(withDuration: 1) {

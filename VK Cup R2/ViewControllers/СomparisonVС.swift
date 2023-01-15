@@ -151,7 +151,7 @@ extension ComparisonVC: UICollectionViewDelegate, UICollectionViewDataSource, UI
                 pair.leftIndex == selectedPairIndexPaths.left?.row && pair.rightIndex == selectedPairIndexPaths.right?.row
             }) {
                 // it's a match
-                print("It's a match")
+
                 UIView.animate(withDuration: 1) {
                     leftCell?.backgroundColor = .green
                     rightCell?.backgroundColor = .green
@@ -166,8 +166,7 @@ extension ComparisonVC: UICollectionViewDelegate, UICollectionViewDataSource, UI
             }
             else {
                 // it's not a match
-                print("It's not a match")
-                
+    
                 UIView.animate(withDuration: 1.2) {
                     leftCell?.backgroundColor = .red
                     rightCell?.backgroundColor = .red
