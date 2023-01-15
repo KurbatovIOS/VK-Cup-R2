@@ -10,7 +10,7 @@ import UIKit
 class HomeViewController: UIViewController {
     
     private var elementsCollectionView: UICollectionView!
-    private let elements = ["Опрос", "Сопоставление", "3", "Заполнение пропусков", "Оценка"]
+    private let elements = ["Опрос", "Сопоставление", "Перетаскивание вариантов", "Заполнение пропусков", "Оценка"]
     
     private let model = MainModel()
     
@@ -82,7 +82,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             destinationVC = SurveyVC()
         case 1:
             destinationVC = ComparisonVC()
-//        case 2:
+        case 2:
+            destinationVC = DragingVC()
         case 3:
             destinationVC = FillTextVC()
         case 4:

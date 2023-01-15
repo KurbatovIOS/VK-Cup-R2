@@ -13,7 +13,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
     
     func configureCell(text: String) {
         
-        backgroundColor = .systemBlue.withAlphaComponent(0.6)
+        backgroundColor = .systemBlue
         layer.cornerRadius = 10
         clipsToBounds = true
         

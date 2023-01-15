@@ -13,6 +13,7 @@ class Helpers {
     static let surveyVCIdentifier = "surveyCell"
     static let rightColumnIdentifier = "rightColumnCell"
     static let letfColumnIdentifier = "leftColumnCell"
+    static let dragVCIdentifier = "dragCell"
     
     enum TitleAlignment {
         case left

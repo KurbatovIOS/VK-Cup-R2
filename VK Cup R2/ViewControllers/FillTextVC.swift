@@ -9,7 +9,7 @@ import UIKit
 
 class FillTextVC: UIViewController {
     
-    private let textLabel = UILabel()
+    private let questionLabel = UILabel()
     private let answerText = UITextView()
     private let button = UIButton()
     private var defaultTextFont: UIFont?
@@ -30,28 +30,28 @@ class FillTextVC: UIViewController {
         
         questionModel.loadData()
         
-        configureText()
+        configureQuestion()
         configureTextView()
         configureButton()
         
         displayQuestion()
     }
     
-    private func configureText() {
+    private func configureQuestion() {
         
-        view.addSubview(textLabel)
+        view.addSubview(questionLabel)
         
         
-        textLabel.font = .preferredFont(forTextStyle: .title2)
-        textLabel.textAlignment = .center
-        textLabel.numberOfLines = 0
+        questionLabel.font = .preferredFont(forTextStyle: .title2)
+        questionLabel.textAlignment = .center
+        questionLabel.numberOfLines = 0
         
-        textLabel.translatesAutoresizingMaskIntoConstraints = false
+        questionLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            textLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
-            textLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-            textLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            questionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
+            questionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            questionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
         ])
     }
     
@@ -69,7 +69,7 @@ class FillTextVC: UIViewController {
         answerText.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            answerText.topAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 50),
+            answerText.topAnchor.constraint(equalTo: questionLabel.bottomAnchor, constant: 50),
             answerText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             answerText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             answerText.heightAnchor.constraint(equalToConstant: 50)
@@ -109,7 +109,7 @@ class FillTextVC: UIViewController {
                 let answer1Color: UIColor = checkAnswer(answer: String(answer[0].lowercased()), answerIndex: 0) ? .green : .red
                 let answer2Color: UIColor = checkAnswer(answer: String(answer[1].lowercased()), answerIndex: 1) ? .green : .red
             
-                let words = textLabel.text?.split(separator: " ")
+                let words = questionLabel.text?.split(separator: " ")
                 
                 var stringForRange = makeStringForRange(words: words!, answerIndex: questions[currentQuestionIndex].answerIndexes[0])
                 let answer1Range = (stringForRange as NSString).range(of: String(answer[0].lowercased()))
@@ -117,13 +117,13 @@ class FillTextVC: UIViewController {
                 stringForRange = makeStringForRange(words: words!, answerIndex: questions[currentQuestionIndex].answerIndexes[1])
                 let answer2Range = (stringForRange as NSString).range(of: String(answer[1].lowercased()))
                 
-                let mutableAttributedString = NSMutableAttributedString.init(string: textLabel.text!)
+                let mutableAttributedString = NSMutableAttributedString.init(string: questionLabel.text!)
                 mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: answer1Color, range: answer1Range)
                 mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: answer2Color, range: answer2Range)
                 
-                textLabel.attributedText = mutableAttributedString
+                questionLabel.attributedText = mutableAttributedString
                 
-                mainModel.clickAnimation(view: textLabel)
+                mainModel.clickAnimation(view: questionLabel)
                 
                 currentQuestionIndex += 1
                 
@@ -148,7 +148,7 @@ class FillTextVC: UIViewController {
     
     private func displayQuestion() {
         
-        textLabel.text = questions[currentQuestionIndex].question
+        questionLabel.text = questions[currentQuestionIndex].question
         answerText.endEditing(true)
         setPlaceholderText()
     }
@@ -174,13 +174,13 @@ class FillTextVC: UIViewController {
     
     private func checkAnswer(answer: String, answerIndex: Int) -> Bool {
         
-        if let stratIndex = textLabel.text!.firstIndex(of: "_") {
+        if let stratIndex = questionLabel.text!.firstIndex(of: "_") {
             
-            let endIndex = textLabel.text!.index(stratIndex, offsetBy: 5)
+            let endIndex = questionLabel.text!.index(stratIndex, offsetBy: 5)
             
             let range = stratIndex..<endIndex
             
-            textLabel.text?.replaceSubrange(range, with: answer)
+            questionLabel.text?.replaceSubrange(range, with: answer)
 
             return answer == questions[currentQuestionIndex].correctAnswers[answerIndex]
         }
