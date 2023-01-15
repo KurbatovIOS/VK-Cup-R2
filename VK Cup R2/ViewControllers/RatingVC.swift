@@ -52,7 +52,6 @@ class RatingVC: UIViewController {
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             titleLabel.bottomAnchor.constraint(equalTo: starsStack.topAnchor, constant: -40)
         ])
-        
     }
     
     private func configureStars() {

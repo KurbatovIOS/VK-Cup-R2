@@ -25,6 +25,9 @@
 		B8CF15432966DD6E000EEFD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8CF15422966DD6E000EEFD5 /* Assets.xcassets */; };
 		B8CF15462966DD6E000EEFD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8CF15442966DD6E000EEFD5 /* LaunchScreen.storyboard */; };
 		B8CF15512966ED45000EEFD5 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CF15502966ED45000EEFD5 /* Helpers.swift */; };
+		B8CFE6A729748586000C63F9 /* DragQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CFE6A629748586000C63F9 /* DragQuestion.swift */; };
+		B8CFE6A9297485E2000C63F9 /* DragData.json in Resources */ = {isa = PBXBuildFile; fileRef = B8CFE6A8297485E2000C63F9 /* DragData.json */; };
+		B8CFE6AB29748651000C63F9 /* DragModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CFE6AA29748651000C63F9 /* DragModel.swift */; };
 		B8E9010B296818A100B9AEC5 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E9010A296818A100B9AEC5 /* Question.swift */; };
 		B8E9010E2968192E00B9AEC5 /* SurveyData.json in Resources */ = {isa = PBXBuildFile; fileRef = B8E9010D2968192E00B9AEC5 /* SurveyData.json */; };
 		B8F22222296EE11000B54382 /* СomparisonVС.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F22221296EE11000B54382 /* СomparisonVС.swift */; };
@@ -55,6 +58,9 @@
 		B8CF15452966DD6E000EEFD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B8CF15472966DD6E000EEFD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8CF15502966ED45000EEFD5 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		B8CFE6A629748586000C63F9 /* DragQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragQuestion.swift; sourceTree = "<group>"; };
+		B8CFE6A8297485E2000C63F9 /* DragData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DragData.json; sourceTree = "<group>"; };
+		B8CFE6AA29748651000C63F9 /* DragModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragModel.swift; sourceTree = "<group>"; };
 		B8E9010A296818A100B9AEC5 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		B8E9010D2968192E00B9AEC5 /* SurveyData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SurveyData.json; sourceTree = "<group>"; };
 		B8F22221296EE11000B54382 /* СomparisonVС.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "СomparisonVС.swift"; sourceTree = "<group>"; };
@@ -115,6 +121,7 @@
 				B8E9010A296818A100B9AEC5 /* Question.swift */,
 				B8F22223296EEFF000B54382 /* Comparison.swift */,
 				B81E74722972ADCF0053DC60 /* QuestionWithGaps.swift */,
+				B8CFE6A629748586000C63F9 /* DragQuestion.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -139,6 +146,7 @@
 				B84F95A92969CBBF003797FA /* SurveyModel.swift */,
 				B8F2222A296F264200B54382 /* ComparisonModel.swift */,
 				B81E74702972AD440053DC60 /* FillGapModel.swift */,
+				B8CFE6AA29748651000C63F9 /* DragModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -157,6 +165,7 @@
 				B8E9010D2968192E00B9AEC5 /* SurveyData.json */,
 				B8F22228296F1DFC00B54382 /* ComparisonData.json */,
 				B81E746E2972ABB70053DC60 /* FillGapData.json */,
+				B8CFE6A8297485E2000C63F9 /* DragData.json */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -233,6 +242,7 @@
 				B8F22229296F1DFC00B54382 /* ComparisonData.json in Resources */,
 				B8E9010E2968192E00B9AEC5 /* SurveyData.json in Resources */,
 				B81E746F2972ABB70053DC60 /* FillGapData.json in Resources */,
+				B8CFE6A9297485E2000C63F9 /* DragData.json in Resources */,
 				B8CF15462966DD6E000EEFD5 /* LaunchScreen.storyboard in Resources */,
 				B8CF15432966DD6E000EEFD5 /* Assets.xcassets in Resources */,
 			);
@@ -249,6 +259,7 @@
 				B829B82F297153F90091197B /* FillTextVC.swift in Sources */,
 				B84F95A82969CB3A003797FA /* SurveyVC.swift in Sources */,
 				B8F22224296EEFF000B54382 /* Comparison.swift in Sources */,
+				B8CFE6A729748586000C63F9 /* DragQuestion.swift in Sources */,
 				B81E7475297329780053DC60 /* HomeCollectionViewCell.swift in Sources */,
 				B8CF153E2966DD6D000EEFD5 /* HomeVC.swift in Sources */,
 				B8CF153A2966DD6D000EEFD5 /* AppDelegate.swift in Sources */,
@@ -261,6 +272,7 @@
 				B8F2222B296F264200B54382 /* ComparisonModel.swift in Sources */,
 				B8E9010B296818A100B9AEC5 /* Question.swift in Sources */,
 				B8CF153C2966DD6D000EEFD5 /* SceneDelegate.swift in Sources */,
+				B8CFE6AB29748651000C63F9 /* DragModel.swift in Sources */,
 				B81E74712972AD440053DC60 /* FillGapModel.swift in Sources */,
 				B8F22222296EE11000B54382 /* СomparisonVС.swift in Sources */,
 				B8676DB0296D88C9002F9779 /* SurveyCollectionViewCell.swift in Sources */,

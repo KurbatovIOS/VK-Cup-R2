@@ -26,8 +26,8 @@ class FillTextVC: UIViewController {
         view.backgroundColor = .systemBackground
         
         answerText.delegate = self
-        questionModel.delegate = self
         
+        questionModel.delegate = self
         questionModel.loadData()
         
         configureQuestion()
@@ -40,7 +40,6 @@ class FillTextVC: UIViewController {
     private func configureQuestion() {
         
         view.addSubview(questionLabel)
-        
         
         questionLabel.font = .preferredFont(forTextStyle: .title2)
         questionLabel.textAlignment = .center
@@ -196,7 +195,7 @@ class FillTextVC: UIViewController {
     }
 }
 
-extension FillTextVC: UITextFieldDelegate, UITextViewDelegate {
+extension FillTextVC: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if answerText.textColor == UIColor.lightGray {

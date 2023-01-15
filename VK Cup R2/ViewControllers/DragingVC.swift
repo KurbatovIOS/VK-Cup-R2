@@ -10,6 +10,7 @@ import UIKit
 class DragingVC: UIViewController {
     
     private let questionLabel = UILabel()
+    private let button = UIButton()
     private let answersCollectionView: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout()
@@ -22,26 +23,33 @@ class DragingVC: UIViewController {
     private var initialCenter = CGPoint()
     
     private let mainModel = MainModel()
+    private let questionModel = DragModel()
     
-    private let answers = ["0", "1", "2", "3"]
-
+    private var questions = [DragQuestion]()
+    private var currentQuestionIndex = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
+        
+        questionModel.delegate = self
+        questionModel.loadData()
         
         answersCollectionView.delegate = self
         answersCollectionView.dataSource = self
         
         configureQuestion()
         configureAnswers()
+        configureButton()
+        
+        displayQuestion()
     }
     
     private func configureQuestion() {
         
         view.addSubview(questionLabel)
         
-        questionLabel.text = "Сначала идёт _____, а потом уже потомпотомпо ______ !"
         questionLabel.font = .preferredFont(forTextStyle: .title2)
         questionLabel.textAlignment = .left
         questionLabel.numberOfLines = 0
@@ -75,6 +83,31 @@ class DragingVC: UIViewController {
         ])
     }
     
+    func configureButton() {
+        
+        view.addSubview(button)
+        
+        button.configuration = .filled()
+        button.configuration?.cornerStyle = .capsule
+        button.configuration?.title = "Ответить"
+        
+        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            button.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15),
+            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            button.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.3),
+            button.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    private func displayQuestion() {
+        
+        questionLabel.text = questions[currentQuestionIndex].question
+    }
+    
     private func findCoordinates(of text: String) -> CGPoint {
         let range: NSRange = (questionLabel.text! as NSString).range(of: text)
         let prefix = (questionLabel.text! as NSString).substring(to: range.location)
@@ -96,6 +129,69 @@ class DragingVC: UIViewController {
             print("Ok")
         }
         
+        
+        
+    }
+    
+    private func checkAnswer(answer: String, answerIndex: Int) -> Bool {
+        
+        // chech and then replace
+        
+        if let stratIndex = questionLabel.text!.firstIndex(of: "_") {
+            
+            let endIndex = questionLabel.text!.index(stratIndex, offsetBy: 5)
+            
+            let range = stratIndex..<endIndex
+            
+            questionLabel.text?.replaceSubrange(range, with: answer)
+
+            //return answer == questions[currentQuestionIndex].correctAnswers[answerIndex]
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    
+    @objc func buttonAction() {
+        
+        let cells = answersCollectionView.visibleCells
+                
+        for cell in cells {
+            print(cell.center)
+        }
+        
+        //questionLabel.text?.replaceSubrange(<#T##subrange: Range<String.Index>##Range<String.Index>#>, with: <#T##Collection#>)
+        
+//        let answer1Color: UIColor = checkAnswer(answer: String(answer[0].lowercased()), answerIndex: 0) ? .green : .red
+//        let answer2Color: UIColor = checkAnswer(answer: String(answer[1].lowercased()), answerIndex: 1) ? .green : .red
+//
+//        let words = questionLabel.text?.split(separator: " ")
+//
+//        var stringForRange = makeStringForRange(words: words!, answerIndex: questions[currentQuestionIndex].answerIndexes[0])
+//        let answer1Range = (stringForRange as NSString).range(of: String(answer[0].lowercased()))
+//
+//        stringForRange = makeStringForRange(words: words!, answerIndex: questions[currentQuestionIndex].answerIndexes[1])
+//        let answer2Range = (stringForRange as NSString).range(of: String(answer[1].lowercased()))
+//
+//        let mutableAttributedString = NSMutableAttributedString.init(string: questionLabel.text!)
+//        mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: answer1Color, range: answer1Range)
+//        mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: answer2Color, range: answer2Range)
+//
+//        questionLabel.attributedText = mutableAttributedString
+//
+//        mainModel.clickAnimation(view: questionLabel)
+//
+//        currentQuestionIndex += 1
+//
+//        if currentQuestionIndex == questions.count {
+//            currentQuestionIndex = 0
+//        }
+//
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+//            self.displayQuestion()
+//        }
+     
     }
     
     @objc private func handlePenGesture(gesture: UIPanGestureRecognizer) {
@@ -116,9 +212,7 @@ class DragingVC: UIViewController {
         }
         else if gesture.state == .ended {
             let point = findCoordinates(of: "_____")
-            // adjust y range
-            print(point)
-            print(cell.center)
+            
             comparePositions(of: cell.center, and: point)
         }
         else {
@@ -130,7 +224,7 @@ class DragingVC: UIViewController {
 extension DragingVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return answers.count
+        return questions[currentQuestionIndex].answers.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -142,7 +236,14 @@ extension DragingVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         cell.backgroundColor = .purple
         cell.tag = indexPath.row
         cell.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector (handlePenGesture)))
-        cell.configureCell(text: answers[indexPath.row])
+        cell.configureCell(text: questions[currentQuestionIndex].answers[indexPath.row])
         return cell
+    }
+}
+
+extension DragingVC: DragModelDelegate {
+   
+    func getData(_ data: [DragQuestion]) {
+        self.questions = data
     }
 }

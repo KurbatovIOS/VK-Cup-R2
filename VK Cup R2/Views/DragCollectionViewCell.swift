@@ -11,8 +11,6 @@ class DragCollectionViewCell: UICollectionViewCell {
     
     private let answerLabel = UILabel()
     
-    private var initialCenter = CGPoint()
-    
     func configureCell(text: String) {
         
         backgroundColor = .systemBlue.withAlphaComponent(0.3)
