@@ -2,7 +2,7 @@
     {
         "question": "Ключевое слово для объявления переменной",
         "answers": ["let", "var", "self"],
-        "correctIndex": 0,
+        "correctIndex": 1,
         "answerPercents": [89, 11, 0]
     },
     {

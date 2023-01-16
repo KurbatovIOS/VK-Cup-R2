@@ -15,7 +15,7 @@ class DragingVC: UIViewController {
         
         let layout = UICollectionViewFlowLayout()
         //layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        layout.sectionInset = UIEdgeInsets(top: 300, left: 15, bottom: 0, right: 15)
+        //layout.sectionInset = UIEdgeInsets(top: 300, left: 15, bottom: 0, right: 15)
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         return view
     }()
@@ -50,6 +50,8 @@ class DragingVC: UIViewController {
         super.viewDidLayoutSubviews()
         if let layout = answersCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+            layout.minimumInteritemSpacing = 5
+            layout.minimumLineSpacing = 10
             layout.sectionInset = UIEdgeInsets(top: 300, left: 15, bottom: 0, right: 15)
         }
         
@@ -206,10 +208,10 @@ class DragingVC: UIViewController {
         let range: NSRange = (questionLabel.text! as NSString).range(of: "_____")
         let prefix = (questionLabel.text! as NSString).substring(to: range.location)
         let size: CGSize = prefix.size(withAttributes: [NSAttributedString.Key.font: questionLabel.font!])
-        var point = CGPoint(x: size.width + 15, y: 35)
+        var point = CGPoint(x: size.width + 20, y: 25)
         if point.x > view.frame.width {
             point.y += 30
-            point.x -= view.frame.width
+            point.x -= (view.frame.width - 40)
         }
         
         return point
@@ -293,7 +295,7 @@ extension DragingVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let width = view.frame.width * 0.3
+        let width = view.frame.width * 0.4
         return CGSize(width: width, height: 40)
     }
 }

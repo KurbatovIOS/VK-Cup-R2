@@ -1,7 +1,7 @@
 [
     {
         "leftCollection": ["One", "Two", "Three", "Four"],
-        "rightCollection": ["Один", "Два", "Три", "Четыре"],
+        "rightCollection": ["Один", "Четыре", "Три", "Два"],
         "matching": [
             {
                 "leftIndex" : 0,
@@ -9,7 +9,7 @@
             },
             {
                 "leftIndex" : 1,
-                "rightIndex" : 1,
+                "rightIndex" : 3,
             },
             {
                 "leftIndex" : 2,
@@ -17,32 +17,52 @@
             },
             {
                 "leftIndex" : 3,
-                "rightIndex" : 3,
+                "rightIndex" : 1,
             },
-            
         ]
     },
     {
-        "leftCollection": ["1", "2", "3", "4"],
-        "rightCollection": ["Один", "Два", "Три", "Четыре"],
+        "leftCollection": ["3", "2", "1", "4"],
+        "rightCollection": ["Два", "Три", "Четыре", "Один"],
         "matching": [
             {
                 "leftIndex" : 0,
-                "rightIndex" : 0,
-            },
-            {
-                "leftIndex" : 1,
                 "rightIndex" : 1,
             },
             {
+                "leftIndex" : 1,
+                "rightIndex" : 0,
+            },
+            {
                 "leftIndex" : 2,
-                "rightIndex" : 2,
+                "rightIndex" : 3,
             },
             {
                 "leftIndex" : 3,
+                "rightIndex" : 2,
+            },
+        ]
+    },
+    {
+        "leftCollection": ["Кошка", "Собака", "Дом", "Дерево"],
+        "rightCollection": ["Dog", "Tree", "Cat", "Home"],
+        "matching": [
+            {
+                "leftIndex" : 0,
+                "rightIndex" : 2,
+            },
+            {
+                "leftIndex" : 1,
+                "rightIndex" : 0,
+            },
+            {
+                "leftIndex" : 2,
                 "rightIndex" : 3,
             },
-            
+            {
+                "leftIndex" : 3,
+                "rightIndex" : 1,
+            },
         ]
     },
 ]

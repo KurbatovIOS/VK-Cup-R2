@@ -1,37 +1,22 @@
 [
     {
-        "question" : "Заполни _____ пропуски как _____ скорее",
-        "correctAnswers" : ["все", "можно"],
-        "answerIndexes" : [1,4]
+        "question" : "Заполни все _____ как _____ скорее",
+        "correctAnswers" : ["пропуски", "можно"],
+        "answerIndexes" : [2,4]
     },
     {
-        "question" : "Вопрос",
-        "correctAnswers" : ["1", "2"],
-        "answerIndexes" : [1,4]
+        "question" : "Ключевое слово _____ используется для _____ константы",
+        "correctAnswers" : ["let", "объявления"],
+        "answerIndexes" : [2,5]
     },
     {
-        "question" : "Заполни _____ пропуски как _____ скорее",
-        "correctAnswers" : ["все", "можно"],
-        "answerIndexes" : [1,4]
+        "question" : "В _____ все _____ упорядочены",
+        "correctAnswers" : ["массиве", "элементы"],
+        "answerIndexes" : [1,3]
     },
     {
-        "question" : "как _____ как как _____ как",
-        "correctAnswers" : ["все", "можно"],
-        "answerIndexes" : [1,4]
+        "question" : "Неупорядоченная _____ с уникальными ключами – _____",
+        "correctAnswers" : ["коллекция", "словарь"],
+        "answerIndexes" : [1,6]
     },
-    {
-        "question" : "Заполни _____ пропуски как _____ скорее",
-        "correctAnswers" : ["все", "можно"],
-        "answerIndexes" : [1,4]
-    },
-    {
-        "question" : "Заполни _____ пропуски как _____ скорее",
-        "correctAnswers" : ["все", "можно"],
-        "answerIndexes" : [1,4]
-    },
-    {
-        "question" : "Заполни _____ пропуски как _____ скорее",
-        "correctAnswers" : ["все", "можно"],
-        "answerIndexes" : [1,4]
-    }
 ]
