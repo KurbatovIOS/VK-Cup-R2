@@ -14,7 +14,7 @@ class DragingVC: UIViewController {
     private let answersCollectionView: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout()
-        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        //layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         layout.sectionInset = UIEdgeInsets(top: 300, left: 15, bottom: 0, right: 15)
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         return view
@@ -44,6 +44,15 @@ class DragingVC: UIViewController {
         configureButton()
         
         displayQuestion()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if let layout = answersCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+            layout.sectionInset = UIEdgeInsets(top: 300, left: 15, bottom: 0, right: 15)
+        }
+        
     }
     
     // MARK: - Views configuration
@@ -121,10 +130,16 @@ class DragingVC: UIViewController {
         
         let cells = answersCollectionView.visibleCells
         
+        let text = questionLabel.text
+        
         let answer1 = findAnswerCell(cells: cells, answerIndex: 0)
         let answer2 = findAnswerCell(cells: cells, answerIndex: 1)
         
         if answer1.cell != nil && answer2.cell != nil {
+            
+            answer1.cell?.alpha = 0
+            answer2.cell?.alpha = 0
+            
             let answer1Color: UIColor = answer1.isCorrectAnseer! ? .green : .red
             let answer2Color: UIColor = answer2.isCorrectAnseer! ? .green : .red
             
@@ -155,8 +170,12 @@ class DragingVC: UIViewController {
             }
         }
         else {
-            // create alert
+            questionLabel.text = text
+            let alert = mainModel.createAlert(message: "Оба пропуска должны быть заполнены")
+            present(alert, animated: true)
         }
+        
+        answersCollectionView.isUserInteractionEnabled = true
     }
     
     @objc private func handlePenGesture(gesture: UIPanGestureRecognizer) {
@@ -183,7 +202,7 @@ class DragingVC: UIViewController {
     // MARK: - Helper functions
     
     private func findPoint() -> CGPoint {
-        
+                
         let range: NSRange = (questionLabel.text! as NSString).range(of: "_____")
         let prefix = (questionLabel.text! as NSString).substring(to: range.location)
         let size: CGSize = prefix.size(withAttributes: [NSAttributedString.Key.font: questionLabel.font!])
@@ -226,11 +245,9 @@ class DragingVC: UIViewController {
         
         for cell in cells {
             if comparePositions(of: cell.center, and: point) {
-                cell.alpha = 0
                 return (cell, checkAnswer(cellTag: cell.tag, answerIndex: answerIndex))
             }
         }
-        
         return (nil, nil)
     }
     
@@ -272,6 +289,12 @@ extension DragingVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         cell.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector (handlePenGesture)))
         cell.configureCell(text: questions[currentQuestionIndex].answers[indexPath.row])
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let width = view.frame.width * 0.3
+        return CGSize(width: width, height: 40)
     }
 }
 
