@@ -12,10 +12,7 @@ class DragingVC: UIViewController {
     private let questionLabel = UILabel()
     private let button = UIButton()
     private let answersCollectionView: UICollectionView = {
-        
         let layout = UICollectionViewFlowLayout()
-        //layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        //layout.sectionInset = UIEdgeInsets(top: 300, left: 15, bottom: 0, right: 15)
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         return view
     }()
@@ -32,6 +29,7 @@ class DragingVC: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "info.circle"), style: .plain, target: self, action: #selector(infoAction))
         
         questionModel.delegate = self
         questionModel.loadData()
@@ -54,7 +52,6 @@ class DragingVC: UIViewController {
             layout.minimumLineSpacing = 10
             layout.sectionInset = UIEdgeInsets(top: 300, left: 15, bottom: 0, right: 15)
         }
-        
     }
     
     // MARK: - Views configuration
@@ -199,6 +196,12 @@ class DragingVC: UIViewController {
         else {
             cell.center = initialCenter
         }
+    }
+    
+    @objc private func infoAction() {
+        let alert = UIAlertController(title: "Подсказка", message: "Старайтесь разместить ответ по центру пропуска", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "ОК", style: .cancel))
+        present(alert, animated: true)
     }
     
     // MARK: - Helper functions
